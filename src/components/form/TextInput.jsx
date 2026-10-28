@@ -14,34 +14,46 @@ export const TextInput = ({
   placeholder = '',
   type = 'text',
   helperText = '',
-  maxLength
+  maxLength,
+  autoComplete
 }) => {
+  const inputId = id || name;
+
   return (
-    <div className="form-group" id={`group-${name}`}>
-      <label htmlFor={id || name} className="form-label">
-        {label}
-        {required && <span className="required-star">*</span>}
+    <div className={`form-group ${error ? 'has-field-error' : ''}`} id={`group-${name}`}>
+      <label htmlFor={inputId} className="form-label">
+        <span className="form-label-text">{label}</span>
+        {required && <span className="required-star" aria-hidden="true">*</span>}
       </label>
-      <input
-        id={id || name}
-        name={name}
-        type={type}
-        value={value ?? ''}
-        onChange={onChange}
-        onBlur={onBlur}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        className={`form-control ${error ? 'has-error' : ''}`}
-        aria-invalid={!!error}
-        aria-required={required}
-        aria-describedby={
-          [error ? `${name}-error` : null, helperText ? `${name}-helper` : null]
-            .filter(Boolean)
-            .join(' ') || undefined
-        }
-      />
-      {helperText && !error && <div id={`${name}-helper`} className="form-helper">{helperText}</div>}
+      <div className="input-wrapper">
+        <input
+          id={inputId}
+          name={name}
+          type={type}
+          value={value ?? ''}
+          onChange={onChange}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          maxLength={maxLength}
+          autoComplete={autoComplete}
+          className={`form-control ${error ? 'has-error' : ''}`}
+          aria-invalid={!!error}
+          aria-required={required}
+          aria-describedby={
+            [error ? `${name}-error` : null, helperText ? `${name}-helper` : null]
+              .filter(Boolean)
+              .join(' ') || undefined
+          }
+        />
+      </div>
+      {helperText && !error && (
+        <div id={`${name}-helper`} className="form-helper">
+          {helperText}
+        </div>
+      )}
       <ValidationMessage id={`${name}-error`} message={error} />
     </div>
   );
 };
+
+export default TextInput;

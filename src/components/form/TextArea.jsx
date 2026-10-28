@@ -14,38 +14,47 @@ export const TextArea = ({
   placeholder = '',
   rows = 4,
   minLength,
-  maxLength = 2000,
+  maxLength = 1000,
   helperText = ''
 }) => {
   const currentLength = (value || '').length;
+  const inputId = id || name;
+  const isNearLimit = maxLength && currentLength > maxLength * 0.85;
 
   return (
-    <div className="form-group" id={`group-${name}`}>
-      <label htmlFor={id || name} className="form-label">
-        {label}
-        {required && <span className="required-star">*</span>}
+    <div className={`form-group ${error ? 'has-field-error' : ''}`} id={`group-${name}`}>
+      <label htmlFor={inputId} className="form-label">
+        <span className="form-label-text">{label}</span>
+        {required && <span className="required-star" aria-hidden="true">*</span>}
       </label>
-      <textarea
-        id={id || name}
-        name={name}
-        rows={rows}
-        value={value ?? ''}
-        onChange={onChange}
-        onBlur={onBlur}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        className={`form-control ${error ? 'has-error' : ''}`}
-        aria-invalid={!!error}
-        aria-required={required}
-        aria-describedby={
-          [error ? `${name}-error` : null, `${name}-helper`]
-            .filter(Boolean)
-            .join(' ') || undefined
-        }
-      />
+      <div className="input-wrapper">
+        <textarea
+          id={inputId}
+          name={name}
+          rows={rows}
+          value={value ?? ''}
+          onChange={onChange}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          maxLength={maxLength}
+          className={`form-control ${error ? 'has-error' : ''}`}
+          aria-invalid={!!error}
+          aria-required={required}
+          aria-describedby={
+            [error ? `${name}-error` : null, `${name}-helper`]
+              .filter(Boolean)
+              .join(' ') || undefined
+          }
+        />
+      </div>
       <div id={`${name}-helper`} className="form-helper">
-        <span>{helperText || (minLength ? `Tối thiểu ${minLength} ký tự` : '')}</span>
-        <span>
+        <span className="helper-text">
+          {helperText || (minLength ? `Tối thiểu ${minLength} ký tự` : '')}
+        </span>
+        <span
+          className={`char-counter ${isNearLimit ? 'near-limit' : ''}`}
+          aria-live="polite"
+        >
           {currentLength} / {maxLength}
         </span>
       </div>
@@ -53,3 +62,5 @@ export const TextArea = ({
     </div>
   );
 };
+
+export default TextArea;

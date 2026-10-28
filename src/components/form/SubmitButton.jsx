@@ -1,32 +1,35 @@
 // src/components/form/SubmitButton.jsx
 import React from 'react';
-import { Send } from 'lucide-react';
+import { Send, Sparkles } from 'lucide-react';
 
 export const SubmitButton = ({
   isLoading = false,
-  loadingText = 'Đang nộp hồ sơ...',
-  text = 'Xác Nhận Nộp Đơn Ứng Tuyển',
+  loadingText = 'Đang gửi đăng ký...',
+  text = 'Xác Nhận Đăng Ký Tham Dự',
   disabled = false,
   onClick
 }) => {
   return (
     <button
       type="submit"
-      className="btn btn-primary"
+      className="btn btn-primary btn-cta submit-btn-luxury"
       disabled={disabled || isLoading}
       onClick={onClick}
     >
       {isLoading ? (
         <>
-          <span className="spinner" aria-hidden="true" />
+          <span className="spinner submit-spinner" aria-hidden="true" />
           <span>{loadingText}</span>
         </>
       ) : (
         <>
-          <Send size={18} />
-          <span>{text}</span>
+          <Send size={18} className="submit-btn-icon" />
+          <span className="submit-btn-text">{text}</span>
+          <Sparkles size={16} className="submit-btn-sparkle text-gold" aria-hidden="true" />
         </>
       )}
     </button>
   );
 };
+
+export default SubmitButton;
