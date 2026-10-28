@@ -210,11 +210,10 @@ export const RegisterPage = () => {
             Nếu bạn gặp khó khăn trong quá trình đăng ký hoặc có câu hỏi về sự kiện, hãy liên hệ ngay với Ban Tổ Chức qua các kênh:
           </p>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <div className="register-support-actions">
             <a
               href={`tel:${GALA_EVENT.organizerContact.hotline.replace(/\s/g, '')}`}
-              className="btn btn-secondary"
-              style={{ padding: '0.55rem 1.1rem', fontSize: '0.88rem' }}
+              className="btn btn-secondary register-support-btn"
             >
               <Phone size={15} className="text-gold" />
               <span>Hotline: {GALA_EVENT.organizerContact.hotline}</span>
@@ -222,8 +221,7 @@ export const RegisterPage = () => {
 
             <a
               href={`mailto:${GALA_EVENT.organizerContact.email}`}
-              className="btn btn-secondary"
-              style={{ padding: '0.55rem 1.1rem', fontSize: '0.88rem' }}
+              className="btn btn-secondary register-support-btn"
             >
               <Mail size={15} className="text-gold" />
               <span>Email: {GALA_EVENT.organizerContact.email}</span>
@@ -233,8 +231,7 @@ export const RegisterPage = () => {
               href={CLUB_INFO.contact.fanpageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-secondary"
-              style={{ padding: '0.55rem 1.1rem', fontSize: '0.88rem' }}
+              className="btn btn-secondary register-support-btn"
             >
               <Facebook size={15} className="text-gold" />
               <span>Fanpage {CLUB_INFO.name}</span>

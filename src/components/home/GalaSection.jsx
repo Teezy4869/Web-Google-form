@@ -253,8 +253,7 @@ export const GalaSection = () => {
             </p>
             <Link
               to="/register"
-              className="btn btn-primary btn-cta"
-              style={{ padding: '1rem 2.75rem', fontSize: '1.05rem' }}
+              className="btn btn-primary btn-cta gala-banner-cta-btn"
             >
               <Ticket size={20} />
               <span>Đăng Ký Tham Dự Ngay</span>
