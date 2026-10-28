@@ -1,135 +1,112 @@
 // src/utils/validation.js
-/**
- * Frontend Validation Rules — Derived strictly from PHASE 0 Specification
- */
+import { ATTENDEE_TYPE_OPTIONS } from '../data/registrationConfig.js';
 
-// Regex patterns
+/**
+ * Regular expressions for Vietnamese phone numbers and names
+ */
 export const REGEX = {
+  // RFC 5322 compliant simplified email format
   EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+
+  // Standard Vietnamese phone numbers (10 digits starting with 03, 05, 07, 08, 09, or +84 equivalent)
   PHONE_VN: /^(0|\+84)(3|5|7|8|9)[0-9]{8}$/,
-  URL: /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/i,
-  FACEBOOK_URL: /^https?:\/\/(www\.)?(facebook\.com|fb\.com)\/[a-zA-Z0-9._?=&-]+/i,
-  NAME: /^[a-zA-ZÀ-ỹ\s]{2,100}$/
+
+  // Vietnamese Unicode letters, spaces, and common name punctuation (. - ')
+  NAME_VN: /^[\p{L}\s.'-]+$/u
 };
 
 /**
- * Validates a single field by name
- * Returns an error string if invalid, or null if valid.
+ * Normalizes phone number strings by stripping formatting characters (spaces, dots, hyphens, parens)
  */
-export const validateField = (fieldName, value, allValues = {}) => {
+export const normalizePhone = (phoneStr) => {
+  if (!phoneStr || typeof phoneStr !== 'string') return '';
+  return phoneStr.replace(/[\s\-().]/g, '');
+};
+
+/**
+ * List of valid attendee types derived from central configuration
+ */
+export const VALID_ATTENDEE_TYPES = ATTENDEE_TYPE_OPTIONS.map((opt) => opt.value);
+
+/**
+ * Validates an individual form field by name.
+ * Returns null if valid, or an error message string if invalid.
+ */
+export const validateField = (fieldName, value) => {
   const strVal = typeof value === 'string' ? value.trim() : '';
 
   switch (fieldName) {
     case 'fullName':
-      if (!strVal) return 'Vui lòng nhập họ và tên của bạn.';
-      if (strVal.length < 2) return 'Họ và tên phải có tối thiểu 2 ký tự.';
-      if (strVal.length > 100) return 'Họ và tên không được vượt quá 100 ký tự.';
-      if (!REGEX.NAME.test(strVal)) return 'Họ và tên chỉ được chứa chữ cái và khoảng trắng.';
+      if (!strVal) {
+        return 'Vui lòng nhập họ và tên của bạn.';
+      }
+      if (strVal.length < 2) {
+        return 'Họ và tên phải có tối thiểu 2 ký tự.';
+      }
+      if (strVal.length > 100) {
+        return 'Họ và tên không được vượt quá 100 ký tự.';
+      }
+      if (!REGEX.NAME_VN.test(strVal)) {
+        return 'Họ và tên chỉ được chứa chữ cái tiếng Việt và khoảng trắng.';
+      }
       return null;
 
     case 'email':
-      if (!strVal) return 'Vui lòng nhập địa chỉ email liên hệ.';
-      if (!REGEX.EMAIL.test(strVal)) return 'Địa chỉ email không đúng định dạng (VD: example@domain.com).';
+      if (!strVal) {
+        return 'Vui lòng nhập địa chỉ email liên hệ.';
+      }
+      if (strVal.length > 150) {
+        return 'Địa chỉ email quá dài (tối đa 150 ký tự).';
+      }
+      if (!REGEX.EMAIL.test(strVal)) {
+        return 'Địa chỉ email không đúng định dạng (Ví dụ: example@domain.com).';
+      }
       return null;
 
     case 'phone': {
-      if (!strVal) return 'Vui lòng nhập số điện thoại hoặc Zalo liên hệ.';
-      const cleanPhone = strVal.replace(/[\s\-.]/g, '');
+      if (!strVal) {
+        return 'Vui lòng nhập số điện thoại liên hệ.';
+      }
+      const cleanPhone = normalizePhone(strVal);
       if (!REGEX.PHONE_VN.test(cleanPhone)) {
-        return 'Số điện thoại không hợp lệ (10 chữ số, bắt đầu bằng 03, 05, 07, 08, 09).';
+        return 'Số điện thoại không hợp lệ (cần 10 chữ số, bắt đầu bằng 03, 05, 07, 08, 09 hoặc +84).';
       }
       return null;
     }
 
-    case 'studentId':
-      if (!strVal) return 'Vui lòng nhập mã số sinh viên (MSSV).';
-      if (strVal.length < 6 || strVal.length > 15) {
-        return 'MSSV phải có độ dài từ 6 đến 15 ký tự.';
+    case 'attendeeType':
+      if (!strVal) {
+        return 'Vui lòng chọn nhóm người tham dự.';
+      }
+      if (!VALID_ATTENDEE_TYPES.includes(strVal)) {
+        return 'Nhóm người tham dự không hợp lệ.';
       }
       return null;
 
-    case 'major':
-      if (!strVal) return 'Vui lòng nhập ngành học và khóa đang theo học.';
-      if (strVal.length < 3) return 'Thông tin ngành học quá ngắn (tối thiểu 3 ký tự).';
-      return null;
-
-    case 'facebookUrl':
-      if (!strVal) return 'Vui lòng cung cấp link Facebook cá nhân để CLB tiện liên hệ.';
-      if (!REGEX.URL.test(strVal) || !REGEX.FACEBOOK_URL.test(strVal)) {
-        return 'Đường link Facebook không hợp lệ (phải bắt đầu bằng http:// hoặc https:// và chứa facebook.com).';
-      }
-      return null;
-
-    case 'primaryDept':
-      if (!strVal) return 'Vui lòng chọn Ban ứng tuyển ưu tiên số 1 (Nguyện vọng 1).';
-      return null;
-
-    case 'secondaryDept':
-      if (strVal && strVal !== 'Không có nguyện vọng 2' && strVal === allValues.primaryDept) {
-        return 'Nguyện vọng 2 không được trùng với Nguyện vọng 1.';
-      }
-      return null;
-
-    case 'reason':
-      if (!strVal) return 'Vui lòng chia sẻ lý do bạn mong muốn tham gia CLB.';
-      if (strVal.length < 50) {
-        return `Nội dung còn quá ngắn (${strVal.length}/50 ký tự). Vui lòng chia sẻ sâu sắc hơn.`;
-      }
-      if (strVal.length > 1500) {
-        return 'Nội dung vượt quá giới hạn cho phép (tối đa 1500 ký tự).';
-      }
-      return null;
-
-    case 'strengthsWeaknesses':
-      if (!strVal) return 'Vui lòng chia sẻ điểm mạnh và điểm yếu của bạn.';
-      if (strVal.length < 50) {
-        return `Nội dung còn quá ngắn (${strVal.length}/50 ký tự tối thiểu).`;
-      }
-      if (strVal.length > 1500) {
-        return 'Nội dung vượt quá giới hạn cho phép (tối đa 1500 ký tự).';
-      }
-      return null;
-
-    case 'timeCommitment':
-      if (!strVal) return 'Vui lòng chọn mức thời gian bạn có thể cam kết cho CLB.';
-      return null;
-
-    case 'skillsExperience':
-      if (!strVal) return 'Vui lòng nêu các kỹ năng và kinh nghiệm liên quan đến Ban đã chọn.';
-      if (strVal.length < 30) {
-        return `Nội dung còn quá ngắn (${strVal.length}/30 ký tự tối thiểu).`;
-      }
-      if (strVal.length > 2000) {
-        return 'Nội dung vượt quá giới hạn cho phép (tối đa 2000 ký tự).';
-      }
-      return null;
-
-    case 'portfolioUrl':
-      // Optional field
-      if (strVal && !REGEX.URL.test(strVal)) {
-        return 'Đường link Portfolio/CV không đúng định dạng URL (phải bắt đầu bằng http:// hoặc https://).';
-      }
-      return null;
-
-    case 'scenarioAnswer':
-      if (!strVal) return 'Vui lòng hoàn thành câu trả lời xử lý tình huống thực tế.';
-      if (strVal.length < 50) {
-        return `Câu trả lời tình huống còn quá ngắn (${strVal.length}/50 ký tự tối thiểu).`;
-      }
-      if (strVal.length > 2000) {
-        return 'Nội dung vượt quá giới hạn cho phép (tối đa 2000 ký tự).';
-      }
-      return null;
-
-    case 'channels':
-      if (Array.isArray(value) && value.length > 3) {
-        return 'Chỉ được chọn tối đa 3 kênh thông tin.';
-      }
-      return null;
-
-    case 'commitment':
+    case 'consent':
       if (!value) {
-        return 'Bạn cần xác nhận cam kết trước khi hoàn tất nộp hồ sơ.';
+        return 'Vui lòng đồng ý với điều khoản sử dụng thông tin để tiếp tục.';
+      }
+      return null;
+
+    case 'studentId':
+      if (!strVal) return null; // Optional
+      if (strVal.length < 4 || strVal.length > 20) {
+        return 'Mã sinh viên phải có độ dài từ 4 đến 20 ký tự.';
+      }
+      return null;
+
+    case 'className':
+      if (!strVal) return null; // Optional
+      if (strVal.length > 100) {
+        return 'Thông tin lớp / đơn vị không được vượt quá 100 ký tự.';
+      }
+      return null;
+
+    case 'note':
+      if (!strVal) return null; // Optional
+      if (strVal.length > 1000) {
+        return 'Ghi chú không được vượt quá 1000 ký tự.';
       }
       return null;
 
@@ -139,55 +116,17 @@ export const validateField = (fieldName, value, allValues = {}) => {
 };
 
 /**
- * Validates the entire form
+ * Validates all fields on the registration form.
+ * Returns an object mapping invalid field names to their respective error strings.
  */
-export const validateAll = (formData) => {
+export const validateAll = (
+  formData,
+  fields = ['fullName', 'email', 'phone', 'attendeeType', 'studentId', 'className', 'note', 'consent']
+) => {
   const errors = {};
-  const fields = [
-    'fullName',
-    'email',
-    'phone',
-    'studentId',
-    'major',
-    'facebookUrl',
-    'primaryDept',
-    'secondaryDept',
-    'reason',
-    'strengthsWeaknesses',
-    'timeCommitment',
-    'skillsExperience',
-    'portfolioUrl',
-    'scenarioAnswer',
-    'channels',
-    'commitment'
-  ];
 
   fields.forEach((field) => {
-    const error = validateField(field, formData[field], formData);
-    if (error) {
-      errors[field] = error;
-    }
-  });
-
-  return errors;
-};
-
-/**
- * Validates fields belonging to a specific step
- */
-export const validateStep = (stepIndex, formData) => {
-  const stepFieldsMap = {
-    1: ['fullName', 'email', 'phone', 'studentId', 'major', 'facebookUrl'],
-    2: ['primaryDept', 'secondaryDept', 'reason', 'strengthsWeaknesses', 'timeCommitment'],
-    3: ['skillsExperience', 'portfolioUrl', 'scenarioAnswer'],
-    4: ['channels', 'commitment']
-  };
-
-  const fieldsToCheck = stepFieldsMap[stepIndex] || [];
-  const errors = {};
-
-  fieldsToCheck.forEach((field) => {
-    const error = validateField(field, formData[field], formData);
+    const error = validateField(field, formData[field]);
     if (error) {
       errors[field] = error;
     }
