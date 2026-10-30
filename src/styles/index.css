@@ -1,7 +1,7 @@
 /* src/styles/index.css */
 /* ==========================================================================
    SOLFERA – D-DAY 2026 DESIGN SYSTEM
-   Modern Luxury, Elegant, Mysterious & Cinematic Identity (YGC / AEP)
+   Modern Luxury, Elegant, Mysterious & Cinematic Identity (GYC - AEP)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -532,11 +532,17 @@ main {
 /* Stats Cards */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
 }
 
 .stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
   padding: 1.85rem 1.25rem;
   text-align: center;
   border-color: var(--border-subtle);
@@ -556,15 +562,27 @@ main {
 .stat-label {
   font-size: 0.9rem;
   color: var(--text-muted);
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1199.98px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 520px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
   .stat-card {
-    padding: 1.25rem 0.65rem;
+    padding: 1.25rem 0.85rem;
   }
   .stat-value {
     font-size: clamp(1.8rem, 5.5vw, 2.2rem);
@@ -577,12 +595,6 @@ main {
   }
   .timeline-date-badge {
     font-size: 0.82rem;
-  }
-}
-
-@media (max-width: 340px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
   }
 }
 

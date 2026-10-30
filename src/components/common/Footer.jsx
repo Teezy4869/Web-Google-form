@@ -87,7 +87,7 @@ export const Footer = () => {
                 <Link to="/#gala" className="footer-link">Sự Kiện D-DAY 2026</Link>
               </li>
               <li>
-                <Link to="/#about" className="footer-link">Về GYC / CLB</Link>
+                <Link to="/#about" className="footer-link">Về GYC - AEP</Link>
               </li>
               <li>
                 <Link to="/register" className="footer-link text-gold" style={{ fontWeight: 600 }}>

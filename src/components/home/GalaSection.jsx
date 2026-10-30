@@ -116,7 +116,7 @@ export const GalaSection = () => {
                 <div className="solfera-visual-media">
                   <img
                     src={GALA_EVENT.media.poster}
-                    alt="Key Visual chính thức Solfera – D-DAY 2026 | GYC/AEP"
+                    alt="Key Visual chính thức Solfera – D-DAY 2026 | GYC - AEP"
                     loading="lazy"
                     decoding="async"
                     width="1200"
@@ -189,12 +189,9 @@ export const GalaSection = () => {
             <span className="badge badge-primary" style={{ marginBottom: '0.85rem' }}>
               Vé Mời Giới Hạn
             </span>
-            <h3 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.4rem)', color: '#ffffff', marginBottom: '0.85rem', letterSpacing: '-0.03em' }}>
-              Bạn Đã Sẵn Sàng Hòa Mình Cùng SOLFERA – D-DAY 2026?
+            <h3 className="direction-title font-display" style={{ marginBottom: '2rem' }}>
+              Chuỗi Sự kiện Chào sinh viên AEP dành riêng cho tân sinh viên Viện Đào tạo Tiên tiến, Chất lượng cao &amp; POHE
             </h3>
-            <p style={{ maxWidth: '620px', margin: '0 auto 2rem', fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-              Đừng bỏ lỡ đại sự kiện nghệ thuật và tri ân giàu cảm xúc nhất của GYC - Câu lạc bộ Thế hệ trẻ AEP. Đăng ký thông tin ngay hôm nay để nhận vé mời điện tử và giữ chỗ ngồi đẹp nhất.
-            </p>
             <Link
               to="/register"
               className="btn btn-primary btn-cta gala-banner-cta-btn"

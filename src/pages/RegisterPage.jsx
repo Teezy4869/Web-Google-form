@@ -16,7 +16,7 @@ import { RegistrationForm } from '../components/registration/RegistrationForm';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 /**
- * RegisterPage (Route /register) — Solfera D-DAY 2026 | GYC/AEP
+ * RegisterPage (Route /register) — Solfera D-DAY 2026 | GYC - AEP
  * Page Structure:
  * - Shared Navbar (rendered by RootLayout)
  * - Solfera D-DAY 2026 heading (h1)

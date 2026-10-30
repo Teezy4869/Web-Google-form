@@ -13,8 +13,8 @@ import { CLUB_INFO } from '../../data/clubData';
 /**
  * AboutSection — Solfera D-DAY 2026 | GYC - Câu lạc bộ Thế hệ trẻ AEP
  * Features:
- * - 1. Verified Achievement & Milestones Strip (stats-grid with luxury champagne typography)
- * - 2. Section Header: About Us, Slogan & Official Description
+ * - 1. Section Header: About Us, Slogan & Official Description
+ * - 2. Verified Achievement & Milestones Strip (stats-grid with luxury champagne typography)
  * - 3. Core Values: 4 Cultural Pillars (Tôn trọng, Chủ động, Trách nhiệm, Đồng hành)
  * - 4. Strategic Bridging CTA Banner guiding visitors to #gala
  */
@@ -45,17 +45,7 @@ export const AboutSection = () => {
   return (
     <section id="about" className="section about-section" aria-label="Giới thiệu GYC - Câu lạc bộ Thế hệ trẻ AEP">
       <div className="container">
-        {/* 1. Verified Achievements & Milestones Strip (Customer PDF Page 4 & 5) */}
-        <div className="stats-grid reveal" style={{ marginBottom: '4.5rem' }}>
-          {CLUB_INFO.stats.map((stat, idx) => (
-            <div key={idx} className={`glass-card stat-card reveal-delay-${idx + 1}`}>
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* 2. Section Header: About Us (Customer PDF Page 5) */}
+        {/* 1. Section Header: About Us (Customer PDF Page 5) */}
         <div className="section-header reveal" style={{ marginBottom: '3.5rem' }}>
           <span className="section-tag">
             <Sparkles size={14} className="text-gold" />
@@ -70,6 +60,16 @@ export const AboutSection = () => {
           <p className="section-desc">
             {CLUB_INFO.description}
           </p>
+        </div>
+
+        {/* 2. Verified Achievements & Milestones Strip (Customer PDF Page 4 & 5) */}
+        <div className="stats-grid reveal" style={{ marginBottom: '4.5rem' }}>
+          {CLUB_INFO.stats.map((stat, idx) => (
+            <div key={idx} className={`glass-card stat-card reveal-delay-${idx + 1}`}>
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
+            </div>
+          ))}
         </div>
 
         {/* 3. Core Values Grid (Customer PDF Page 6) */}

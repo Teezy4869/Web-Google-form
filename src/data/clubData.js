@@ -1,6 +1,6 @@
 // src/data/clubData.js
 /**
- * YGC / AEP Club General Information & Brand Assets
+ * GYC - AEP Club General Information & Brand Assets
  * Single Source of Truth for Organization identity, verified milestones, activities, and media configurations.
  */
 
@@ -80,7 +80,7 @@ export const CLUB_INFO = {
       category: "Đời sống thành viên",
       description: "Các chuyến đi dã ngoại, sinh nhật CLB và chuỗi hoạt động gắn kết nội bộ giúp các thế hệ thành viên luôn đồng lòng và yêu thương như gia đình.",
       highlights: ["Môi trường sinh viên thân thiện, tích cực và tràn đầy năng lượng", "Tôn trọng sự đa dạng và phát triển từng cá nhân"],
-      imagePlaceholder: "[Placeholder: Hình ảnh teambuilding đại gia đình YGC / AEP]"
+      imagePlaceholder: "[Placeholder: Hình ảnh teambuilding đại gia đình GYC - AEP]"
     }
   ],
 

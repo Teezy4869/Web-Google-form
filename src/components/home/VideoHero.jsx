@@ -56,7 +56,7 @@ export const VideoHero = () => {
             <div className="hero-kicker-wrapper hero-animate-kicker">
               <span className="section-tag hero-kicker">
                 <Sparkles size={14} className="text-gold" />
-                <span>NHẬN DIỆN CHÍNH THỨC · GYC / AEP</span>
+                <span>GYC - Câu lạc bộ Thế hệ trẻ AEP</span>
               </span>
             </div>
 

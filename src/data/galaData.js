@@ -17,7 +17,7 @@ export const GALA_EVENT = {
   meaningParagraph1: "Người trẻ mang trong mình ngọn lửa khát khao không bao giờ tắt - một trái tim đập nhịp cùng nghệ thuật và thơ ca. Mỗi bước đi của người trẻ là một tuyên ngôn kiêu hãnh: biến đam mê thành kiệt tác, biến tri thức thành hào quang, và tự tay viết nên một chương rực rỡ nhất của đời mình.",
   meaningParagraph2: "Chuỗi Sự kiện Chào sinh viên AEP dành riêng cho tân sinh viên Viện Đào tạo Tiên tiến, Chất lượng cao & POHE. D-DAY 2026 sẽ kiến tạo một chân trời mới nơi các bạn tân sinh viên có thể tự do khám phá, trải nghiệm và phát huy tiềm năng của mình. Qua đó, thấm nhuần những giá trị cốt lõi làm nên bản sắc của bao thế hệ sinh viên AEP: năng động, sáng tạo, trẻ trung và nhiệt huyết.",
   meaning: "Người trẻ mang trong mình ngọn lửa khát khao không bao giờ tắt - một trái tim đập nhịp cùng nghệ thuật và thơ ca. Mỗi bước đi của người trẻ là một tuyên ngôn kiêu hãnh: biến đam mê thành kiệt tác, biến tri thức thành hào quang, và tự tay viết nên một chương rực rỡ nhất của đời mình.",
-  description: "Không gian nghệ thuật đong đầy cảm xúc gửi gắm tới toàn bộ tân sinh viên AEP K68 nói riêng và sinh viên Đại học Kinh tế Quốc dân nói chung. Đêm nhạc hứa hẹn sẽ mang tới những màn trình diễn đầy ấn tượng của các cặp thí sinh cuộc thi King & Queen 2026 tài năng. Cùng với đó chính là sự xuất hiện bất ngờ của những vị Ca sĩ khách mời vô cùng đặc biệt.",
+  description: "Không gian nghệ thuật đong đầy cảm xúc gửi gắm tới toàn bộ tân sinh viên AEP K68 nói riêng và sinh viên Đại học Kinh tế Quốc dân nói chung. Đêm diễn hứa hẹn sẽ mang tới những màn trình diễn đầy ấn tượng của các cặp thí sinh cuộc thi King & Queen 2026 tài năng. Cùng với đó chính là sự xuất hiện bất ngờ của những vị Ca sĩ khách mời vô cùng đặc biệt.",
 
   // Official Event Timeline / Chuỗi sự kiện chính (Customer PDF Page 4)
   timeline: [
@@ -80,7 +80,7 @@ export const GALA_EVENT = {
       { id: "partner", label: "Đại diện CLB bạn / Đối tác khách mời" }
     ],
     discoveryChannels: [
-      "Fanpage CLB GYC / AEP",
+      "Fanpage CLB GYC - AEP",
       "Bạn bè / Người quen giới thiệu",
       "Các Group sinh viên trường",
       "Bàn truyền thông trực tiếp tại sảnh",

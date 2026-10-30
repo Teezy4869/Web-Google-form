@@ -87,8 +87,8 @@ export const Navbar = () => {
             <span className="nav-brand-title font-display">SOLFERA</span>
             <span className="brand-badge">D-DAY 2026</span>
           </div>
-          <span className="brand-org-tag" title="Tổ chức bởi GYC & AEP">
-            GYC / AEP
+          <span className="brand-org-tag" title="Tổ chức bởi GYC - AEP">
+            GYC - AEP
           </span>
         </Link>
 
@@ -132,7 +132,7 @@ export const Navbar = () => {
               className="nav-link"
               onClick={() => handleNavClick('about')}
             >
-              Về GYC / CLB
+              Về GYC - AEP
             </Link>
           </li>
           <li>
