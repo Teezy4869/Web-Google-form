@@ -1,7 +1,7 @@
 import { SCHOOL_OPTIONS } from '../data/registrationConfig.js';
 
 const REQUIRED_FIELDS = [
-  'fullName', 'school', 'studentId', 'className', 'phone', 'email', 'facebook'
+  'fullName', 'school', 'studentId', 'className', 'phone', 'email'
 ];
 
 export const normalizePhone = (phone) =>

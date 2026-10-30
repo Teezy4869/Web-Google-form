@@ -34,7 +34,7 @@ export const readPublishedFormStatus = async (fetchGoogle = fetch) => {
 
 const validSubmission = (data) => {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
-  const required = ['fullName', 'school', 'studentId', 'className', 'phone', 'email', 'facebook'];
+  const required = ['fullName', 'school', 'studentId', 'className', 'phone', 'email'];
   if (required.some((field) => typeof data[field] !== 'string' || !data[field].trim() || data[field].length > 500)) return false;
   if (data.school === '__other_option__' && (typeof data.schoolOther !== 'string' || !data.schoolOther.trim() || data.schoolOther.length > 500)) return false;
   if (data.school !== '__other_option__' && data.school !== 'Đại học Kinh tế Quốc dân') return false;

@@ -334,8 +334,7 @@ main {
   gap: 1.75rem;
 }
 
-/* Four-card sections use fixed column counts instead of auto-fit. */
-.grid-2.highlight-grid,
+/* Pillar cards use fixed column counts instead of auto-fit. */
 .grid-2.pillar-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem;
@@ -343,14 +342,12 @@ main {
 }
 
 @media (max-width: 1200px) {
-  .grid-2.highlight-grid,
   .grid-2.pillar-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .grid-2.highlight-grid,
   .grid-2.pillar-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
@@ -1047,54 +1044,47 @@ main {
 }
 
 .hero-showcase-frame:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 45px rgba(198, 65, 122, 0.35);
 }
 
 /* Hero Entrance Animations & Floating Effect */
 .hero-animate-kicker {
-  opacity: 0;
-  animation: heroFadeDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  animation: heroFadeDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.03s both;
 }
 
 .hero-animate-title {
-  opacity: 0;
-  animation: heroTitleEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+  animation: heroTitleEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
 }
 
 .hero-animate-tagline {
-  opacity: 0;
-  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+  animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
 }
 
 .hero-animate-desc {
-  opacity: 0;
-  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.19s both;
 }
 
 .hero-animate-pills {
-  opacity: 0;
-  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
 }
 
 .hero-animate-actions {
-  opacity: 0;
-  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+  animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
 }
 
 .hero-animate-visual {
-  opacity: 0;
-  animation: heroVisualEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  animation: heroVisualEntrance 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
 }
 
 .hero-showcase-float {
-  animation: heroVisualFloat 7s ease-in-out infinite;
+  animation: none;
 }
 
 @keyframes heroFadeDown {
   from {
     opacity: 0;
-    transform: translateY(-16px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
@@ -1105,7 +1095,7 @@ main {
 @keyframes heroFadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -1116,35 +1106,22 @@ main {
 @keyframes heroTitleEntrance {
   from {
     opacity: 0;
-    transform: translateY(24px);
-    letter-spacing: 0.01em;
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    letter-spacing: 0.04em;
   }
 }
 
 @keyframes heroVisualEntrance {
   from {
     opacity: 0;
-    transform: translateY(32px) scale(0.96);
+    transform: translateY(14px) scale(0.985);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes heroVisualFloat {
-  0%, 100% {
-    transform: translateY(0);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(198, 65, 122, 0.22);
-  }
-  50% {
-    transform: translateY(-6px);
-    box-shadow: 0 32px 70px rgba(0, 0, 0, 0.75), 0 0 45px rgba(198, 65, 122, 0.32);
   }
 }
 
@@ -1172,7 +1149,7 @@ main {
 }
 
 .hero-showcase-frame:hover .hero-showcase-img {
-  transform: scale(1.03);
+  transform: scale(1.012);
 }
 
 .hero-showcase-overlay {
@@ -1272,6 +1249,7 @@ main {
 @media (max-width: 992px) {
   .hero-section {
     padding-top: 5.5rem;
+    flex-direction: column;
   }
   .hero-grid {
     grid-template-columns: 1fr;
@@ -1294,6 +1272,14 @@ main {
   .hero-showcase-frame {
     max-width: 600px;
     margin: 0 auto;
+  }
+  .hero-scroll-indicator {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    flex: 0 0 auto;
+    margin-top: 1.5rem;
   }
 }
 
@@ -1328,9 +1314,6 @@ main {
     font-size: 0.95rem;
     white-space: normal;
     text-align: center;
-  }
-  .hero-scroll-indicator {
-    bottom: 1rem;
   }
 }
 
@@ -2913,39 +2896,41 @@ select.form-control option {
    -------------------------------------------------------------------------- */
 /* Scroll-Triggered Reveal Animations */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transition: opacity 0.58s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.58s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal.is-visible {
+.motion-ready .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.motion-ready .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-  will-change: auto;
 }
 
 .reveal-scale {
-  opacity: 0;
-  transform: translateY(20px) scale(0.97);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transition: opacity 0.62s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal-scale.is-visible {
+.motion-ready .reveal-scale:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+}
+
+.motion-ready .reveal-scale.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
-  will-change: auto;
 }
 
-.reveal-delay-1 { transition-delay: 0.08s; }
-.reveal-delay-2 { transition-delay: 0.16s; }
-.reveal-delay-3 { transition-delay: 0.24s; }
-.reveal-delay-4 { transition-delay: 0.32s; }
-.reveal-delay-5 { transition-delay: 0.40s; }
-.reveal-delay-6 { transition-delay: 0.48s; }
+.reveal-delay-1 { transition-delay: 0.04s; }
+.reveal-delay-2 { transition-delay: 0.08s; }
+.reveal-delay-3 { transition-delay: 0.12s; }
+.reveal-delay-4 { transition-delay: 0.16s; }
+.reveal-delay-5 { transition-delay: 0.20s; }
+.reveal-delay-6 { transition-delay: 0.24s; }
 
 /* Gala Section Components */
 .gala-section {
@@ -3087,24 +3072,13 @@ select.form-control option {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(198, 65, 122, 0.2);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
   overflow: hidden;
-  animation: keyVisualBreathe 6s ease-in-out infinite;
+  animation: none;
 }
 
 .solfera-visual-showcase-frame:hover {
-  transform: translateY(-5px) scale(1.015);
+  transform: translateY(-2px);
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75), 0 0 50px rgba(198, 65, 122, 0.4);
   border-color: var(--champagne);
-}
-
-@keyframes keyVisualBreathe {
-  0%, 100% {
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(198, 65, 122, 0.2);
-    border-color: var(--border-gold);
-  }
-  50% {
-    box-shadow: 0 26px 65px rgba(0, 0, 0, 0.75), 0 0 48px rgba(198, 65, 122, 0.35);
-    border-color: rgba(243, 209, 166, 0.48);
-  }
 }
 
 .solfera-visual-badge {
@@ -3133,7 +3107,7 @@ select.form-control option {
 }
 
 .solfera-visual-showcase-frame:hover .solfera-visual-img {
-  transform: scale(1.03);
+  transform: scale(1.012);
 }
 
 .solfera-visual-overlay {
@@ -3209,54 +3183,6 @@ select.form-control option {
   flex-shrink: 0;
 }
 
-/* 4 Highlights Cards */
-.highlight-card {
-  padding: 1.5rem;
-  border-color: var(--border-subtle);
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.highlight-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
-}
-
-.highlight-icon-box {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
-  background: rgba(198, 65, 122, 0.14);
-  border: 1px solid var(--border-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--champagne);
-}
-
-.highlight-number {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 800;
-  color: rgba(243, 209, 166, 0.25);
-}
-
-.highlight-title {
-  font-size: 1.25rem;
-  color: #ffffff;
-  margin-bottom: 0.65rem;
-}
-
-.highlight-desc {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  overflow-wrap: break-word;
-}
-
 /* Gala CTA Banner with Solfera Cover Background */
 .gala-cta-banner {
   position: relative;
@@ -3289,21 +3215,8 @@ select.form-control option {
   background: linear-gradient(135deg, #d15686 0%, #c6417a 40%, #812240 100%);
   color: #ffffff;
   border: 1px solid rgba(243, 209, 166, 0.45);
-  animation: ctaGlow 2.8s ease-in-out infinite;
+  animation: none;
   min-height: 48px;
-}
-
-@keyframes ctaGlow {
-  0% {
-    box-shadow: 0 4px 20px rgba(198, 65, 122, 0.35);
-  }
-  50% {
-    box-shadow: 0 8px 35px rgba(198, 65, 122, 0.7), 0 0 25px rgba(243, 209, 166, 0.4);
-    transform: translateY(-2px);
-  }
-  100% {
-    box-shadow: 0 4px 20px rgba(198, 65, 122, 0.35);
-  }
 }
 
 .gala-banner-cta-btn {
@@ -3563,9 +3476,6 @@ select.form-control option {
   .gala-info-block > div:last-child {
     min-width: 0;
   }
-  .highlight-card {
-    padding: 1.5rem;
-  }
   .btn-cta {
     width: 100%;
     justify-content: center;
@@ -3602,4 +3512,243 @@ select.form-control option {
 
 .status-message-card[data-status="unconfigured"] {
   border-left-color: var(--accent);
+}
+
+/* Phase 01: restrained Solfera lighting and surface polish. All layers are static. */
+.gala-section {
+  background-image:
+    radial-gradient(ellipse at 12% 24%, rgba(129, 34, 64, 0.13), transparent 43%),
+    radial-gradient(ellipse at 86% 63%, rgba(198, 65, 122, 0.09), transparent 40%),
+    linear-gradient(180deg, var(--bg-primary) 0%, #1a080c 50%, var(--bg-primary) 100%);
+}
+
+.about-section {
+  background-image:
+    radial-gradient(ellipse at 82% 16%, rgba(129, 34, 64, 0.12), transparent 42%),
+    radial-gradient(ellipse at 16% 81%, rgba(198, 65, 122, 0.07), transparent 43%);
+}
+
+.register-page-content {
+  background-image:
+    radial-gradient(ellipse at 50% 12%, rgba(129, 34, 64, 0.15), transparent 46%),
+    radial-gradient(ellipse at 86% 65%, rgba(198, 65, 122, 0.06), transparent 38%);
+}
+
+.hero-backdrop-vignette {
+  background:
+    radial-gradient(ellipse at 27% 39%, rgba(198, 65, 122, 0.13), transparent 37%),
+    radial-gradient(ellipse at 50% 50%, rgba(18, 5, 7, 0.35) 0%, rgba(18, 5, 7, 0.95) 100%),
+    linear-gradient(180deg, rgba(18, 5, 7, 0.7) 0%, transparent 25%, rgba(18, 5, 7, 0.7) 80%);
+}
+
+.hero-title-brand {
+  text-shadow: 0 6px 30px rgba(198, 65, 122, 0.19);
+}
+
+.hero-info-pill {
+  background-image: linear-gradient(145deg, rgba(243, 209, 166, 0.055), transparent 58%);
+  border-color: rgba(243, 209, 166, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.08), 0 5px 16px rgba(0, 0, 0, 0.16);
+}
+
+.hero-showcase-frame,
+.solfera-visual-showcase-frame {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 243, 226, 0.14),
+    0 23px 58px rgba(0, 0, 0, 0.61),
+    0 0 32px rgba(198, 65, 122, 0.18);
+}
+
+.section-tag,
+.badge-primary {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.1), 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.gala-meaning-card {
+  background-image:
+    radial-gradient(ellipse at 95% 3%, rgba(198, 65, 122, 0.09), transparent 52%),
+    linear-gradient(135deg, rgba(38, 12, 18, 0.92) 0%, rgba(20, 6, 9, 0.98) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.1), 0 25px 70px rgba(0, 0, 0, 0.66), 0 0 33px rgba(198, 65, 122, 0.13);
+}
+
+.meaning-value-item {
+  background-image: linear-gradient(115deg, rgba(243, 209, 166, 0.035), transparent 64%);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.04);
+}
+
+.gala-info-strip {
+  background-image: linear-gradient(115deg, rgba(243, 209, 166, 0.045), transparent 60%);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.09), 0 17px 42px rgba(0, 0, 0, 0.36);
+}
+
+.countdown-box {
+  background-image: linear-gradient(155deg, rgba(243, 209, 166, 0.055), transparent 53%);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.1), 0 18px 50px rgba(0, 0, 0, 0.46), 0 0 26px rgba(198, 65, 122, 0.13);
+}
+
+.countdown-unit {
+  border-color: rgba(243, 209, 166, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.045);
+}
+
+.stat-card,
+.pillar-card {
+  background-image: linear-gradient(145deg, rgba(243, 209, 166, 0.045), transparent 57%);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.075), 0 13px 28px rgba(0, 0, 0, 0.26);
+}
+
+.pillar-icon-box,
+.gala-info-icon,
+.meaning-value-icon,
+.form-section-icon-badge {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.12), 0 0 16px rgba(198, 65, 122, 0.1);
+}
+
+.gala-direction-card,
+.gala-cta-banner {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.12), 0 22px 55px rgba(0, 0, 0, 0.48), 0 0 30px rgba(198, 65, 122, 0.13);
+}
+
+.register-page-content .form-wrapper > .glass-card:not(.form-card) {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.09), 0 16px 38px rgba(0, 0, 0, 0.29);
+}
+
+.form-card {
+  background-image: radial-gradient(ellipse at 100% 0%, rgba(198, 65, 122, 0.075), transparent 46%);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.11), 0 25px 65px rgba(0, 0, 0, 0.59), 0 0 30px rgba(198, 65, 122, 0.13);
+}
+
+.form-section-divider {
+  background: linear-gradient(90deg, transparent, rgba(243, 209, 166, 0.24) 22%, rgba(198, 65, 122, 0.34) 50%, rgba(243, 209, 166, 0.24) 78%, transparent);
+}
+
+.form-control {
+  border-color: rgba(243, 209, 166, 0.22);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.17);
+}
+
+.form-control::placeholder {
+  color: rgba(205, 180, 188, 0.62);
+}
+
+.form-control:focus-visible {
+  border-color: var(--champagne);
+  box-shadow: 0 0 0 3px rgba(243, 209, 166, 0.2), 0 0 16px rgba(198, 65, 122, 0.15);
+}
+
+.choice-card {
+  background-image: linear-gradient(120deg, rgba(243, 209, 166, 0.035), transparent 65%);
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.045);
+}
+
+.choice-card:has(.choice-radio-input:focus-visible) {
+  border-color: var(--champagne);
+  box-shadow: 0 0 0 3px rgba(243, 209, 166, 0.2), inset 0 1px 0 rgba(255, 243, 226, 0.09);
+}
+
+.choice-card.selected {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.12), 0 0 18px rgba(198, 65, 122, 0.2);
+}
+
+.registration-notice-banner {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.1), 0 10px 27px rgba(0, 0, 0, 0.27);
+}
+
+.btn-primary,
+.submit-btn-luxury {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.23), 0 5px 20px rgba(198, 65, 122, 0.29);
+}
+
+.btn-primary:hover:not(:disabled),
+.submit-btn-luxury:hover:not(:disabled) {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.28), 0 8px 28px rgba(198, 65, 122, 0.36), 0 0 12px rgba(243, 209, 166, 0.13);
+}
+
+.btn-primary:active:not(:disabled),
+.submit-btn-luxury:active:not(:disabled) {
+  box-shadow: inset 0 2px 8px rgba(20, 5, 6, 0.28), 0 3px 12px rgba(198, 65, 122, 0.2);
+}
+
+.btn-secondary:hover:not(:disabled),
+.register-support-btn:hover:not(:disabled) {
+  box-shadow: inset 0 1px 0 rgba(255, 243, 226, 0.09), 0 7px 18px rgba(0, 0, 0, 0.35);
+}
+
+.btn:focus-visible {
+  outline-color: var(--champagne);
+  box-shadow: 0 0 0 4px rgba(243, 209, 166, 0.2), 0 6px 22px rgba(198, 65, 122, 0.18);
+}
+
+/* Phase 02: one low-frequency ambient accent, limited to the hero backdrop. */
+.hero-backdrop::after {
+  content: '';
+  position: absolute;
+  top: 16%;
+  right: 9%;
+  width: min(30vw, 360px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 65, 122, 0.15), transparent 68%);
+  opacity: 0.45;
+  pointer-events: none;
+  animation: heroLightDrift 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroLightDrift {
+  from { transform: translate3d(-10px, 0, 0); opacity: 0.32; }
+  to { transform: translate3d(10px, -8px, 0); opacity: 0.53; }
+}
+
+/* Children join their parent reveal once; no extra observer or hidden default. */
+.gala-meaning-card.is-visible .timeline-value-item,
+.stats-grid.is-visible .stat-card {
+  animation: cardArrive 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.gala-meaning-card.is-visible .timeline-value-item:nth-child(2),
+.stats-grid.is-visible .stat-card:nth-child(2) { animation-delay: 0.06s; }
+.gala-meaning-card.is-visible .timeline-value-item:nth-child(3),
+.stats-grid.is-visible .stat-card:nth-child(3) { animation-delay: 0.12s; }
+.stats-grid.is-visible .stat-card:nth-child(4) { animation-delay: 0.18s; }
+
+@keyframes cardArrive {
+  from { opacity: 0.72; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (hover: none) {
+  .hero-showcase-frame:hover,
+  .solfera-visual-showcase-frame:hover,
+  .meaning-value-item:hover,
+  .glass-card-interactive:hover {
+    transform: none;
+  }
+
+  .hero-showcase-frame:hover .hero-showcase-img,
+  .solfera-visual-showcase-frame:hover .solfera-visual-img {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-backdrop::after,
+  .scroll-wheel { animation: none; }
+  .hero-animate-kicker,
+  .hero-animate-title,
+  .hero-animate-tagline,
+  .hero-animate-desc,
+  .hero-animate-pills,
+  .hero-animate-actions,
+  .hero-animate-visual { animation-duration: 0.42s; }
+
+  .motion-ready .reveal:not(.is-visible) { transform: translateY(8px); }
+  .motion-ready .reveal-scale:not(.is-visible) { transform: translateY(8px) scale(0.99); }
+  .reveal,
+  .reveal-scale { transition-duration: 0.42s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-backdrop::after,
+  .gala-meaning-card.is-visible .timeline-value-item,
+  .stats-grid.is-visible .stat-card { animation: none !important; }
 }

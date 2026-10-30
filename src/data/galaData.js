@@ -29,7 +29,7 @@ export const GALA_EVENT = {
     {
       id: "king_queen",
       title: "CUỘC THI KING & QUEEN 2026",
-      date: "16/10/2026 - 05/11/2026"
+      date: "16/09/2026 - 05/11/2026"
     },
     {
       id: "gala_night",
@@ -54,33 +54,6 @@ export const GALA_EVENT = {
 
   status: "REGISTRATION_OPEN",
 
-  highlights: [
-    {
-      id: "honoring",
-      number: "01",
-      title: "Lễ Vinh Danh & Tri Ân Thế Hệ",
-      description: "Khoảnh khắc trang trọng vinh danh các cá nhân, ban chuyên môn xuất sắc và gửi lời tri ân sâu sắc tới các thế hệ cựu thành viên đã đặt nền móng phát triển."
-    },
-    {
-      id: "performance",
-      number: "02",
-      title: "Đại Nhạc Hội Sân Khấu Bùng Nổ",
-      description: "Chuỗi tiết mục ca múa nhạc, nhảy hiện đại và biểu diễn nghệ thuật đặc sắc được dàn dựng công phu từ chính các ban thành viên và khách mời nghệ sĩ."
-    },
-    {
-      id: "networking",
-      number: "03",
-      title: "Không Gian Kết Nối & Giao Lưu",
-      description: "Tiệc trà nhẹ thân mật, nơi các thế hệ anh chị cựu thành viên chia sẻ kinh nghiệm sự nghiệp quý báu và truyền cảm hứng cho thế hệ trẻ."
-    },
-    {
-      id: "exhibition",
-      number: "04",
-      title: "Không Gian Triển Lãm & Dấu Ấn",
-      description: "Triển lãm ảnh và sản phẩm độc quyền, nhìn lại các chiến dịch truyền thông và các sản phẩm công nghệ tiêu biểu qua từng mùa hoạt động."
-    }
-  ],
-
   media: {
     poster: "/assets/images/solfera-poster.webp",
     heroVisual: "/assets/images/solfera-hero-visual.webp",
@@ -93,7 +66,7 @@ export const GALA_EVENT = {
     hotlineTel: "0983259655",
     email: "dday26.gyc@gmail.com",
     fanpageName: "GYC - Câu lạc bộ Thế hệ trẻ AEP",
-    fanpageUrl: "https://facebook.com"
+    fanpageUrl: "https://www.facebook.com/gyc.aep?locale=vi_VN"
   },
 
   registrationSettings: {

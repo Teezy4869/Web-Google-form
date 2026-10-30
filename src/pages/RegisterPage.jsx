@@ -9,11 +9,9 @@ import {
   MapPin,
   HelpCircle,
   Phone,
-  Mail,
-  Facebook
+  Mail
 } from 'lucide-react';
 import { GALA_EVENT } from '../data/galaData';
-import { CLUB_INFO } from '../data/clubData';
 import { RegistrationForm } from '../components/registration/RegistrationForm';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
@@ -138,6 +136,7 @@ export const RegisterPage = () => {
           </div>
           <ul className="notice-banner-list">
             <li>Mỗi lượt đăng ký sẽ tương ứng với 01 vé.</li>
+            <li>Do số lượng khán giả có hạn, đơn đăng ký chỉ hợp lệ khi bạn nhận được email xác nhận từ Ban Tổ chức GYC - Câu lạc bộ Thế hệ trẻ AEP.</li>
           </ul>
         </div>
 
@@ -195,16 +194,6 @@ export const RegisterPage = () => {
               <span>Email: {GALA_EVENT.organizerContact.email}</span>
             </a>
 
-            <a
-              href={GALA_EVENT.organizerContact.fanpageUrl || CLUB_INFO.contact.fanpageUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary register-support-btn"
-              aria-label="Fanpage GYC - Câu lạc bộ Thế hệ trẻ AEP"
-            >
-              <Facebook size={15} className="text-gold" />
-              <span>Fanpage: {GALA_EVENT.organizerContact.fanpageName || CLUB_INFO.contact.fanpageName}</span>
-            </a>
           </div>
         </div>
       </div>

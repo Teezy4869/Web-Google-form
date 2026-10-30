@@ -11,7 +11,7 @@ import { getGalaRegistrationStatus, submitGalaRegistration } from '../../service
 
 const INITIAL_VALUES = {
   fullName: '', school: '', schoolOther: '', studentId: '', className: '',
-  phone: '', email: '', facebook: '', note: ''
+  phone: '', email: '', note: ''
 };
 
 export const RegistrationForm = ({ onSubmitService = submitGalaRegistration, onStatusService = getGalaRegistrationStatus }) => {
@@ -126,7 +126,7 @@ export const RegistrationForm = ({ onSubmitService = submitGalaRegistration, onS
         <div className="register-outcome-icon" aria-hidden="true"><Check size={32} /></div>
         <p className="register-outcome-kicker">Yêu cầu đăng ký đã được gửi</p>
         <h2 id="register-thanks-title" className="font-display register-outcome-title">Hẹn gặp lại tại {GALA_EVENT.theme}!</h2>
-        <p className="register-outcome-description">Cảm ơn bạn đã dành thời gian đăng ký. Hãy cùng chờ đón một đêm Gala đáng nhớ.</p>
+        <p className="register-outcome-description">Cảm ơn bạn đã dành thời gian đăng ký. Vui lòng kiểm tra email: đơn đăng ký chỉ hợp lệ sau khi bạn nhận được email xác nhận từ Ban Tổ chức.</p>
         <div className="register-outcome-details">
           <p><Calendar size={18} aria-hidden="true" />{GALA_EVENT.schedule.dateTime}</p>
           <p><MapPin size={18} aria-hidden="true" />{GALA_EVENT.venue.fullLocation}</p>
@@ -197,7 +197,6 @@ export const RegistrationForm = ({ onSubmitService = submitGalaRegistration, onS
             {input('phone')}
             {input('email')}
           </div>
-          {input('facebook')}
         </FormSection>
 
         <FormSection icon={FileText} title="Lời Nhắn Cho Ban Tổ Chức">

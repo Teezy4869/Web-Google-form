@@ -89,7 +89,7 @@ export const CLUB_INFO = {
     hotline: "098 325 9655",
     hotlineTel: "0983259655",
     fanpageName: "GYC - Câu lạc bộ Thế hệ trẻ AEP",
-    fanpageUrl: "https://facebook.com",
+    fanpageUrl: "https://www.facebook.com/gyc.aep?locale=vi_VN",
     address: "Hội trường A2, Tòa A2, Đại học Kinh tế Quốc dân, 207 Giải Phóng, Đồng Tâm, Hà Nội"
   }
 };

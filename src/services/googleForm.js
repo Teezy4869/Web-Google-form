@@ -10,7 +10,6 @@ export const GALA_GOOGLE_FORM_CONFIG = {
     className: 'entry.325967802',
     phone: 'entry.1786229529',
     email: 'entry.240186417',
-    facebook: 'entry.478477233',
     note: 'entry.1520100712'
   }
 };
@@ -23,7 +22,7 @@ export const buildGalaFormPayload = (formData, config = GALA_GOOGLE_FORM_CONFIG)
   const payload = new URLSearchParams();
   const { entries } = config;
 
-  for (const field of ['fullName', 'studentId', 'className', 'phone', 'email', 'facebook']) {
+  for (const field of ['fullName', 'studentId', 'className', 'phone', 'email']) {
     payload.set(entries[field], String(formData[field] ?? '').trim());
   }
 

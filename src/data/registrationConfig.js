@@ -35,10 +35,6 @@ export const REGISTRATION_FIELDS = {
     name: 'email', label: 'Email', required: true,
     type: 'email', autoComplete: 'email', placeholder: 'ten@example.com'
   },
-  facebook: {
-    name: 'facebook', label: 'Link Facebook', required: true,
-    type: 'text', placeholder: 'Đường dẫn trang Facebook của bạn'
-  },
   note: {
     name: 'note', label: 'Nếu có bất kỳ thắc mắc nào, hãy gửi đến Ban Tổ chức tại đây.',
     required: false, placeholder: 'Câu hỏi dành cho Ban Tổ chức (không bắt buộc)'

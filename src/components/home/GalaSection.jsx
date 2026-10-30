@@ -7,10 +7,6 @@ import {
   MapPin,
   Ticket,
   Clock,
-  Award,
-  Music,
-  Users2,
-  Camera,
   ArrowRight,
   Users,
   Crown
@@ -26,26 +22,10 @@ import { CountdownTimer } from '../common/CountdownTimer';
  * - Event Meaning & Storytelling (Theme: “Song of Triumph, Spark of Wisdom”)
  * - Official Key Visual Masterpiece Showcase Frame (Strict 16:9 aspect ratio, no crop/distortion)
  * - Schedule & Venue Information (Hội trường A2, ĐH Kinh tế Quốc dân, 18:30 05/11/2026)
- * - 4 Key Highlights of the Celebration
  * - Countdown Timer
  * - Primary Registration CTA linking directly to /register via React Router
  */
 export const GalaSection = () => {
-  const getHighlightIcon = (id) => {
-    switch (id) {
-      case 'honoring':
-        return <Award size={22} className="text-primary" />;
-      case 'performance':
-        return <Music size={22} className="text-primary" />;
-      case 'networking':
-        return <Users2 size={22} className="text-primary" />;
-      case 'exhibition':
-        return <Camera size={22} className="text-primary" />;
-      default:
-        return <Sparkles size={22} className="text-primary" />;
-    }
-  };
-
   const getTimelineIcon = (id) => {
     switch (id) {
       case 'teambuilding':
@@ -192,32 +172,6 @@ export const GalaSection = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* 4 Main Event Highlights */}
-        <div style={{ marginBottom: '5rem' }}>
-          <div className="section-header reveal" style={{ marginBottom: '2.5rem' }}>
-            <span className="section-tag">Điểm Nhấn Sự Kiện</span>
-            <h3 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#ffffff' }}>4 Dấu Ấn Đáng Chờ Đợi Nhất</h3>
-          </div>
-
-          <div className="grid-2 highlight-grid">
-            {GALA_EVENT.highlights.map((item, idx) => (
-              <div
-                key={item.id}
-                className={`glass-card glass-card-interactive highlight-card reveal reveal-delay-${(idx % 4) + 1}`}
-              >
-                <div className="highlight-header">
-                  <div className="highlight-icon-box">
-                    {getHighlightIcon(item.id)}
-                  </div>
-                  <span className="highlight-number">{item.number}</span>
-                </div>
-                <h4 className="highlight-title">{item.title}</h4>
-                <p className="highlight-desc">{item.description}</p>
-              </div>
-            ))}
           </div>
         </div>
 

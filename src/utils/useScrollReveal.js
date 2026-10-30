@@ -1,53 +1,41 @@
 // src/utils/useScrollReveal.js
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 /**
  * Lightweight Scroll-Triggered Reveal Hook — Solfera D-DAY 2026
  * Uses native IntersectionObserver to animate elements with .reveal / .reveal-scale
  * when they enter the viewport.
  * - Fully respects prefers-reduced-motion
- * - Auto-cleans up will-change after transition to conserve GPU memory
- * - Robust fallback when IntersectionObserver is unsupported
+ * - Leaves content visible unless the observer is ready
+ * - Falls back to visible content when motion is reduced or unsupported
  */
 export const useScrollReveal = () => {
-  useEffect(() => {
-    // If user prefers reduced motion, reveal everything immediately
+  useLayoutEffect(() => {
+    const root = document.documentElement;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      document.querySelectorAll('.reveal, .reveal-scale').forEach((el) => {
-        el.classList.add('is-visible');
-      });
-      return;
-    }
-
-    if (typeof IntersectionObserver === 'undefined') {
-      document.querySelectorAll('.reveal, .reveal-scale').forEach((el) => {
-        el.classList.add('is-visible');
-      });
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -30px 0px'
-      }
-    );
+    if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') return;
 
     const elements = document.querySelectorAll('.reveal, .reveal-scale');
-    elements.forEach((el) => observer.observe(el));
+    let observer;
+    try {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      elements.forEach((el) => observer.observe(el));
+      root.classList.add('motion-ready');
+    } catch {
+      observer?.disconnect();
+      root.classList.remove('motion-ready');
+      return;
+    }
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
       observer.disconnect();
+      root.classList.remove('motion-ready');
     };
   }, []);
 };

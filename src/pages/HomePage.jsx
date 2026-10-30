@@ -9,7 +9,7 @@ import { useScrollReveal } from '../utils/useScrollReveal';
  * HomePage (Landing Page)
  * Reordered Page Composition (Customer Page 1 Requirement):
  * 1. VideoHero (#hero) - Event identity, introduction, schedule pills, primary CTA
- * 2. GalaSection (#gala) - Event celebration details, meaning, timeline, highlights, countdown
+ * 2. GalaSection (#gala) - Event celebration details, meaning, timeline, countdown
  * 3. AboutSection (#about) - Club identity, milestones, core values
  * (Footer is rendered via shared RootLayout)
  */

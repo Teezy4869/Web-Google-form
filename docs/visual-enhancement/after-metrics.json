@@ -1,0 +1,289 @@
+{
+  "320": {
+    "home": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 8148,
+      "sections": [
+        {
+          "id": "hero",
+          "top": 77,
+          "height": 1221
+        },
+        {
+          "id": "gala",
+          "top": 1298,
+          "height": 3021
+        },
+        {
+          "id": "about",
+          "top": 4319,
+          "height": 2864
+        }
+      ],
+      "formFields": []
+    },
+    "register": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 4121,
+      "sections": [],
+      "formFields": [
+        "fullName",
+        "school",
+        "school",
+        "studentId",
+        "className",
+        "phone",
+        "email",
+        "note"
+      ]
+    }
+  },
+  "375": {
+    "home": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "scrollHeight": 7655,
+      "sections": [
+        {
+          "id": "hero",
+          "top": 77,
+          "height": 1279
+        },
+        {
+          "id": "gala",
+          "top": 1356,
+          "height": 2869
+        },
+        {
+          "id": "about",
+          "top": 4225,
+          "height": 2501
+        }
+      ],
+      "formFields": []
+    },
+    "register": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "scrollHeight": 3984,
+      "sections": [],
+      "formFields": [
+        "fullName",
+        "school",
+        "school",
+        "studentId",
+        "className",
+        "phone",
+        "email",
+        "note"
+      ]
+    }
+  },
+  "390": {
+    "home": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 7610,
+      "sections": [
+        {
+          "id": "hero",
+          "top": 77,
+          "height": 1291
+        },
+        {
+          "id": "gala",
+          "top": 1368,
+          "height": 2822
+        },
+        {
+          "id": "about",
+          "top": 4190,
+          "height": 2491
+        }
+      ],
+      "formFields": []
+    },
+    "register": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 3944,
+      "sections": [],
+      "formFields": [
+        "fullName",
+        "school",
+        "school",
+        "studentId",
+        "className",
+        "phone",
+        "email",
+        "note"
+      ]
+    }
+  },
+  "430": {
+    "home": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "scrollHeight": 7434,
+      "sections": [
+        {
+          "id": "hero",
+          "top": 77,
+          "height": 1275
+        },
+        {
+          "id": "gala",
+          "top": 1352,
+          "height": 2754
+        },
+        {
+          "id": "about",
+          "top": 4106,
+          "height": 2422
+        }
+      ],
+      "formFields": []
+    },
+    "register": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "scrollHeight": 3825,
+      "sections": [],
+      "formFields": [
+        "fullName",
+        "school",
+        "school",
+        "studentId",
+        "className",
+        "phone",
+        "email",
+        "note"
+      ]
+    }
+  },
+  "768": {
+    "home": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 6506,
+      "sections": [
+        {
+          "id": "hero",
+          "top": 77,
+          "height": 1229
+        },
+        {
+          "id": "gala",
+          "top": 1306,
+          "height": 2456
+        },
+        {
+          "id": "about",
+          "top": 3762,
+          "height": 1927
+        }
+      ],
+      "formFields": []
+    },
+    "register": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 3050,
+      "sections": [],
+      "formFields": [
+        "fullName",
+        "school",
+        "school",
+        "studentId",
+        "className",
+        "phone",
+        "email",
+        "note"
+      ]
+    }
+  },
+  "1024": {
+    "home": {
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "scrollHeight": 5496,
+      "sections": [
+        {
+          "id": "hero",
+          "top": 77,
+          "height": 1002
+        },
+        {
+          "id": "gala",
+          "top": 1079,
+          "height": 2199
+        },
+        {
+          "id": "about",
+          "top": 3278,
+          "height": 1777
+        }
+      ],
+      "formFields": []
+    },
+    "register": {
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "scrollHeight": 2778,
+      "sections": [],
+      "formFields": [
+        "fullName",
+        "school",
+        "school",
+        "studentId",
+        "className",
+        "phone",
+        "email",
+        "note"
+      ]
+    }
+  },
+  "1440": {
+    "home": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 5507,
+      "sections": [
+        {
+          "id": "hero",
+          "top": 77,
+          "height": 954
+        },
+        {
+          "id": "gala",
+          "top": 1031,
+          "height": 2247
+        },
+        {
+          "id": "about",
+          "top": 3279,
+          "height": 1787
+        }
+      ],
+      "formFields": []
+    },
+    "register": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 2796,
+      "sections": [],
+      "formFields": [
+        "fullName",
+        "school",
+        "school",
+        "studentId",
+        "className",
+        "phone",
+        "email",
+        "note"
+      ]
+    }
+  }
+}

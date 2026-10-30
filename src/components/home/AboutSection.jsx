@@ -9,7 +9,6 @@ import {
   Sparkles
 } from 'lucide-react';
 import { CLUB_INFO } from '../../data/clubData';
-import { GALA_EVENT } from '../../data/galaData';
 
 /**
  * AboutSection — Solfera D-DAY 2026 | GYC - Câu lạc bộ Thế hệ trẻ AEP
@@ -110,11 +109,8 @@ export const AboutSection = () => {
               Sự Kiện Trọng Tâm 2026
             </span>
             <h3 className="direction-title font-display">
-              Khám Phá Hành Trình Rực Rỡ Tại <span className="text-gradient">{GALA_EVENT.name}</span>
+              Chuỗi Sự kiện Chào sinh viên AEP dành riêng cho tân sinh viên Viện Đào tạo Tiên tiến, Chất lượng cao &amp; POHE
             </h3>
-            <p className="direction-desc">
-              Đại sự kiện nghệ thuật tri ân, vinh danh những cá nhân xuất sắc và gắn kết các thế hệ sinh viên, thành viên GYC - Câu lạc bộ Thế hệ trẻ AEP đang đón chờ bạn.
-            </p>
             <a
               href="#gala"
               onClick={scrollToGala}
