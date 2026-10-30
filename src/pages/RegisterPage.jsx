@@ -1,57 +1,37 @@
 // src/pages/RegisterPage.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft,
+  AlertCircle,
   Ticket,
   Calendar,
   MapPin,
-  Info,
   HelpCircle,
   Phone,
   Mail,
-  Facebook,
-  Sparkles
+  Facebook
 } from 'lucide-react';
 import { GALA_EVENT } from '../data/galaData';
 import { CLUB_INFO } from '../data/clubData';
 import { RegistrationForm } from '../components/registration/RegistrationForm';
-import { SuccessModal } from '../components/common/SuccessModal';
 import { useScrollReveal } from '../utils/useScrollReveal';
 
 /**
- * RegisterPage (Route /register) — Solfera D-DAY 2026 | YGC/AEP
+ * RegisterPage (Route /register) — Solfera D-DAY 2026 | GYC/AEP
  * Page Structure:
  * - Shared Navbar (rendered by RootLayout)
  * - Solfera D-DAY 2026 heading (h1)
  * - Brief event information strip (Time & Venue)
- * - Registration instructions (h2)
- * - Single-Page Controlled Registration Form (RegistrationForm.jsx)
+ * - Registration notice and native form connected to Google Forms
  * - Support / Contact Information (h2)
  * - Shared Footer (rendered by RootLayout)
  */
 export const RegisterPage = () => {
   useScrollReveal();
 
-  const [successData, setSuccessData] = useState(null);
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
-  const [formKey, setFormKey] = useState(0);
-
-  const handleSuccess = (submittedData, meta = { verified: true }) => {
-    setSuccessData({
-      ...submittedData,
-      isVerified: meta.verified !== false
-    });
-    setIsSuccessModalOpen(true);
-  };
-
-  const handleReset = () => {
-    setFormKey((prev) => prev + 1);
-    setSuccessData(null);
-  };
-
-  const timeDisplay = GALA_EVENT.schedule.dateTime || 'Đang cập nhật';
-  const venueDisplay = GALA_EVENT.venue.name || 'Hội trường lớn PTIT, Hà Nội (Đang cập nhật)';
+  const timeDisplay = `${GALA_EVENT.schedule.dateTime} · Check-in: ${GALA_EVENT.schedule.checkInTime}`;
+  const venueDisplay = GALA_EVENT.venue.fullLocation;
 
   return (
     <div className="register-page-content" style={{ padding: '3.5rem 0 6rem' }}>
@@ -72,13 +52,13 @@ export const RegisterPage = () => {
         <div className="section-header" style={{ marginBottom: '2.5rem' }}>
           <span className="section-tag">
             <Ticket size={14} className="text-gold" />
-            <span>Phiếu Đăng Ký Tham Dự</span>
+            <span>Phiếu Đăng Ký Vé Standard</span>
           </span>
           <h1 className="section-title font-display">
             Đăng Ký Tham Dự <span className="text-gradient">{GALA_EVENT.name}</span>
           </h1>
           <p className="section-desc">
-            Đại sự kiện nghệ thuật tri ân, vinh danh và kết nối thế hệ {CLUB_INFO.fullName}. Vui lòng hoàn tất thông tin bên dưới để Ban Tổ Chức xuất vé mời điện tử và giữ chỗ ngồi đẹp nhất.
+            Bạn vui lòng điền đầy đủ các thông tin dưới đây để đăng ký vé Standard tham dự Vòng Chung kết cuộc thi King & Queen 2026 - Gala Night D-DAY 2026: "SOLFERA".
           </p>
         </div>
 
@@ -145,36 +125,24 @@ export const RegisterPage = () => {
           </div>
         </div>
 
-        {/* 3. Registration Instructions */}
+        {/* 3. Official Registration Notice */}
         <div
-          className="glass-card"
-          style={{
-            padding: '1.5rem 1.85rem',
-            marginBottom: '2.5rem',
-            background: 'linear-gradient(135deg, rgba(198, 65, 122, 0.08) 0%, rgba(26, 8, 12, 0.85) 100%)',
-            borderLeft: '4px solid var(--champagne)'
-          }}
+          className="registration-notice-banner"
+          role="region"
+          aria-label="Lưu ý đăng ký vé"
+          style={{ marginBottom: '2.5rem' }}
         >
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-            <Info size={22} className="text-gold" style={{ flexShrink: 0, marginTop: '0.15rem' }} />
-            <div>
-              <h2 style={{ fontSize: '1.05rem', color: '#ffffff', marginBottom: '0.35rem', fontWeight: 600 }}>
-                Quy Trình Nhận Vé Mời Điện Tử (E-Ticket)
-              </h2>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                <li>• <strong>Bước 1:</strong> Điền đầy đủ và kiểm tra thông tin liên hệ trong biểu mẫu bên dưới.</li>
-                <li>• <strong>Bước 2:</strong> Bấm xác nhận đăng ký để hệ thống lưu giữ chỗ ngồi của bạn.</li>
-                <li>• <strong>Bước 3:</strong> Kiểm tra hộp thư Email để nhận vé điện tử kèm mã QR check-in tại cửa hội trường.</li>
-              </ul>
-            </div>
+          <div className="notice-banner-header">
+            <AlertCircle size={22} className="notice-banner-icon" aria-hidden="true" />
+            <h2 className="notice-banner-title font-display">Lưu ý:</h2>
           </div>
+          <ul className="notice-banner-list">
+            <li>Mỗi lượt đăng ký sẽ tương ứng với 01 vé.</li>
+          </ul>
         </div>
 
-        {/* 4. Single-Page Controlled Registration Form */}
-        <RegistrationForm
-          key={formKey}
-          onSuccess={handleSuccess}
-        />
+        {/* 4. Native form submits its mapped answers to the published Google Form. */}
+        <RegistrationForm />
 
         {/* 5. Support & Contact Information */}
         <div
@@ -228,24 +196,17 @@ export const RegisterPage = () => {
             </a>
 
             <a
-              href={CLUB_INFO.contact.fanpageUrl}
+              href={GALA_EVENT.organizerContact.fanpageUrl || CLUB_INFO.contact.fanpageUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary register-support-btn"
+              aria-label="Fanpage GYC - Câu lạc bộ Thế hệ trẻ AEP"
             >
               <Facebook size={15} className="text-gold" />
-              <span>Fanpage {CLUB_INFO.name}</span>
+              <span>Fanpage: {GALA_EVENT.organizerContact.fanpageName || CLUB_INFO.contact.fanpageName}</span>
             </a>
           </div>
         </div>
-
-        {/* 6. Success / Unverified Confirmation Modal */}
-        <SuccessModal
-          isOpen={isSuccessModalOpen}
-          data={successData}
-          onClose={() => setIsSuccessModalOpen(false)}
-          onReset={handleReset}
-        />
       </div>
     </div>
   );

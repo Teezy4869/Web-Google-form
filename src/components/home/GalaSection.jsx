@@ -12,9 +12,8 @@ import {
   Users2,
   Camera,
   ArrowRight,
-  Flame,
-  HeartHandshake,
-  Rocket
+  Users,
+  Crown
 } from 'lucide-react';
 import { GALA_EVENT } from '../../data/galaData';
 import { CLUB_INFO } from '../../data/clubData';
@@ -23,9 +22,10 @@ import { CountdownTimer } from '../common/CountdownTimer';
 /**
  * SOLFERA – D-DAY 2026 Event Section
  * Features:
- * - Event Theme & Storytelling Meaning (Khơi Nguồn Đam Mê & 3 Core Values)
+ * - Event Series: CHUỖI SỰ KIỆN CHÀO SINH VIÊN D-DAY 2026: “SOLFERA” (Pages 2-3)
+ * - Event Meaning & Storytelling (Theme: “Song of Triumph, Spark of Wisdom”)
  * - Official Key Visual Masterpiece Showcase Frame (Strict 16:9 aspect ratio, no crop/distortion)
- * - Schedule & Venue Information (falls back cleanly to "Đang cập nhật")
+ * - Schedule & Venue Information (Hội trường A2, ĐH Kinh tế Quốc dân, 18:30 05/11/2026)
  * - 4 Key Highlights of the Celebration
  * - Countdown Timer
  * - Primary Registration CTA linking directly to /register via React Router
@@ -46,88 +46,78 @@ export const GalaSection = () => {
     }
   };
 
-  const themeDisplay = GALA_EVENT.theme || 'Đang cập nhật';
-  const timeDisplay = GALA_EVENT.schedule.dateTime || 'Đang cập nhật';
-  const doorsOpenDisplay = GALA_EVENT.schedule.doorsOpen || 'Đang cập nhật';
-  const venueDisplay = GALA_EVENT.venue.name || 'Đang cập nhật';
-  const addressDisplay = GALA_EVENT.venue.address || 'Đang cập nhật';
+  const getTimelineIcon = (id) => {
+    switch (id) {
+      case 'teambuilding':
+        return <Users size={20} className="text-gold" />;
+      case 'king_queen':
+        return <Crown size={20} className="text-gold" />;
+      case 'gala_night':
+        return <Sparkles size={20} className="text-gold" />;
+      default:
+        return <Calendar size={20} className="text-gold" />;
+    }
+  };
+
+  const timeDisplay = GALA_EVENT.schedule.dateTime;
+  const checkInDisplay = GALA_EVENT.schedule.checkInTime || GALA_EVENT.schedule.doorsOpen;
+  const venueDisplay = GALA_EVENT.venue.name;
+  const addressDisplay = GALA_EVENT.venue.address;
 
   return (
     <section id="gala" className="section gala-section" aria-label="Sự kiện SOLFERA – D-DAY 2026">
       <div className="container">
-        {/* Section Header */}
+        {/* Section Header: Official Series Title & Clean Kicker (Redundant theme subtitle removed per Page 2) */}
         <div className="section-header reveal">
           <span className="section-tag">
             <Sparkles size={14} className="text-gold" />
-            <span>Đại Sự Kiện Nghệ Thuật & Tri Ân</span>
+            <span>{GALA_EVENT.seriesKicker}</span>
           </span>
-          <h2 className="section-title">{GALA_EVENT.name}</h2>
-          <p className="section-desc" style={{ maxWidth: '680px', margin: '0 auto' }}>
-            Chủ đề chính thức: <strong className="text-gradient" style={{ fontSize: '1.15rem' }}>{themeDisplay}</strong>
-          </p>
+          <h2 className="section-title">
+            D-DAY 2026: <span className="text-gradient font-display">“SOLFERA”</span>
+          </h2>
         </div>
 
         {/* Meaning & Storytelling Card with Official Key Visual Showcase */}
         <div className="glass-card gala-meaning-card reveal" style={{ marginBottom: '4.5rem' }}>
           <div className="gala-meaning-grid">
-            {/* Left Column: Storytelling & Meaning Pillars */}
+            {/* Left Column: Storytelling & Meaning Text */}
             <div className="gala-meaning-text">
               <div className="meaning-kicker-wrapper">
                 <span className="badge badge-primary">
                   <Sparkles size={13} className="text-gold" />
-                  <span>Ý Nghĩa Sự Kiện · Linh Hồn Solfera</span>
+                  <span>{GALA_EVENT.meaningHeading}</span>
                 </span>
               </div>
 
               <h3 className="meaning-heading font-display">
-                Khơi Nguồn Đam Mê — <span className="text-gradient">Bừng Sáng Tương Lai</span>
+                “Song of Triumph, <span className="text-gradient">Spark of Wisdom”</span>
               </h3>
 
               <p className="meaning-lead">
-                {GALA_EVENT.meaning}
+                {GALA_EVENT.meaningParagraph1}
               </p>
 
               <p className="meaning-desc">
-                {GALA_EVENT.description}
+                {GALA_EVENT.meaningParagraph2}
               </p>
 
-              {/* 3 Meaning Core Pillars */}
-              <div className="meaning-values-grid">
-                <div className="meaning-value-item">
-                  <div className="meaning-value-icon">
-                    <Flame size={20} className="text-gold" />
+              {/* Official Event Timeline (Customer PDF Page 4) */}
+              <div className="meaning-values-grid timeline-values-grid" aria-label="Lộ trình sự kiện">
+                {GALA_EVENT.timeline.map((item) => (
+                  <div key={item.id} className="meaning-value-item timeline-value-item">
+                    <div className="meaning-value-icon timeline-value-icon">
+                      {getTimelineIcon(item.id)}
+                    </div>
+                    <div className="meaning-value-content">
+                      <h4 className="meaning-value-title timeline-value-title">{item.title}</h4>
+                      <div className="timeline-date-badge">
+                        <Calendar size={13} className="text-gold" />
+                        <span>{item.date}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="meaning-value-content">
-                    <h4 className="meaning-value-title">Thắp Lửa Đam Mê</h4>
-                    <p className="meaning-value-text">
-                      Khơi dậy nguồn cảm hứng sáng tạo và khát vọng dấn thân mãnh liệt của thế hệ trẻ công nghệ & truyền thông.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="meaning-value-item">
-                  <div className="meaning-value-icon">
-                    <HeartHandshake size={20} className="text-gold" />
-                  </div>
-                  <div className="meaning-value-content">
-                    <h4 className="meaning-value-title">Gắn Kết Thế Hệ</h4>
-                    <p className="meaning-value-text">
-                      Tri ân những cống hiến của thế hệ tiền bối, thắt chặt tinh thần đoàn kết bền chặt của đại gia đình YGC / AEP.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="meaning-value-item">
-                  <div className="meaning-value-icon">
-                    <Rocket size={20} className="text-gold" />
-                  </div>
-                  <div className="meaning-value-content">
-                    <h4 className="meaning-value-title">Bứt Phá Giới Hạn</h4>
-                    <p className="meaning-value-text">
-                      Mở ra chương mới đầy triển vọng, cùng nhau kiến tạo những giá trị tích cực và vươn tới tầm cao mới.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -146,7 +136,7 @@ export const GalaSection = () => {
                 <div className="solfera-visual-media">
                   <img
                     src={GALA_EVENT.media.poster}
-                    alt="Key Visual chính thức Solfera – D-DAY 2026 | YGC/AEP"
+                    alt="Key Visual chính thức Solfera – D-DAY 2026 | GYC/AEP"
                     loading="lazy"
                     decoding="async"
                     width="1200"
@@ -160,10 +150,10 @@ export const GalaSection = () => {
                 <div className="solfera-visual-footer">
                   <div className="visual-footer-info">
                     <span className="visual-footer-label">ẤN PHẨM NHẬN DIỆN CHÍNH THỨC</span>
-                    <span className="visual-footer-title">{GALA_EVENT.name}</span>
+                    <span className="visual-footer-title">D-DAY 2026: “SOLFERA”</span>
                   </div>
                   <div className="visual-footer-tag">
-                    <span>{CLUB_INFO.name}</span>
+                    <span>GYC - Câu lạc bộ Thế hệ trẻ AEP</span>
                   </div>
                 </div>
               </div>
@@ -184,7 +174,7 @@ export const GalaSection = () => {
                 <p style={{ fontSize: '1rem', color: 'var(--text-main)', fontWeight: 600 }}>{timeDisplay}</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.4rem', color: 'var(--text-dim)', fontSize: '0.85rem' }}>
                   <Clock size={14} />
-                  <span>Mở cửa đón khách: {doorsOpenDisplay}</span>
+                  <span>Thời gian check-in: {checkInDisplay}</span>
                 </div>
               </div>
             </div>
@@ -212,7 +202,7 @@ export const GalaSection = () => {
             <h3 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#ffffff' }}>4 Dấu Ấn Đáng Chờ Đợi Nhất</h3>
           </div>
 
-          <div className="grid-2">
+          <div className="grid-2 highlight-grid">
             {GALA_EVENT.highlights.map((item, idx) => (
               <div
                 key={item.id}
@@ -249,7 +239,7 @@ export const GalaSection = () => {
               Bạn Đã Sẵn Sàng Hòa Mình Cùng SOLFERA – D-DAY 2026?
             </h3>
             <p style={{ maxWidth: '620px', margin: '0 auto 2rem', fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-              Đừng bỏ lỡ đại sự kiện nghệ thuật và tri ân giàu cảm xúc nhất của YGC / AEP. Đăng ký thông tin ngay hôm nay để nhận vé mời điện tử và giữ chỗ ngồi đẹp nhất.
+              Đừng bỏ lỡ đại sự kiện nghệ thuật và tri ân giàu cảm xúc nhất của GYC - Câu lạc bộ Thế hệ trẻ AEP. Đăng ký thông tin ngay hôm nay để nhận vé mời điện tử và giữ chỗ ngồi đẹp nhất.
             </p>
             <Link
               to="/register"

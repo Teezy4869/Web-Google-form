@@ -29,7 +29,7 @@ export const NotFoundPage = () => {
 
         <h1 style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>404 - Không Tìm Thấy Trang</h1>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '2rem' }}>
-          Đường dẫn bạn đang tìm kiếm không tồn tại hoặc đã được chuyển hướng về trang sự kiện GALA NIGHT 2026.
+          Đường dẫn bạn đang tìm kiếm không tồn tại hoặc đã được chuyển hướng về trang sự kiện Gala Night D-DAY 2026: “SOLFERA”.
         </p>
 
         <Link to="/" className="btn btn-primary" style={{ padding: '0.75rem 1.75rem' }}>

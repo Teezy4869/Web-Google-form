@@ -87,8 +87,8 @@ export const Navbar = () => {
             <span className="nav-brand-title font-display">SOLFERA</span>
             <span className="brand-badge">D-DAY 2026</span>
           </div>
-          <span className="brand-org-tag" title="Tổ chức bởi YGC & AEP">
-            YGC / AEP
+          <span className="brand-org-tag" title="Tổ chức bởi GYC & AEP">
+            GYC / AEP
           </span>
         </Link>
 
@@ -103,7 +103,7 @@ export const Navbar = () => {
           {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
-        {/* Navigation Links */}
+        {/* Navigation Links - Order matches page reading hierarchy */}
         <ul
           id="navbar-nav-links"
           className={`nav-links ${isMobileOpen ? 'open' : ''}`}
@@ -119,20 +119,20 @@ export const Navbar = () => {
           </li>
           <li>
             <Link
-              to="/#about"
-              className="nav-link"
-              onClick={() => handleNavClick('about')}
-            >
-              Về YGC / CLB
-            </Link>
-          </li>
-          <li>
-            <Link
               to="/#gala"
               className="nav-link"
               onClick={() => handleNavClick('gala')}
             >
-              {GALA_EVENT.theme || 'D-DAY 2026'}
+              Sự Kiện D-DAY 2026
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/#about"
+              className="nav-link"
+              onClick={() => handleNavClick('about')}
+            >
+              Về GYC / CLB
             </Link>
           </li>
           <li>

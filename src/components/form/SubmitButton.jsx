@@ -5,7 +5,7 @@ import { Send, Sparkles } from 'lucide-react';
 export const SubmitButton = ({
   isLoading = false,
   loadingText = 'Đang gửi đăng ký...',
-  text = 'Xác Nhận Đăng Ký Tham Dự',
+  text = 'Hoàn Tất Đăng Ký Tham Dự',
   disabled = false,
   onClick
 }) => {
@@ -23,7 +23,7 @@ export const SubmitButton = ({
         </>
       ) : (
         <>
-          <Send size={18} className="submit-btn-icon" />
+          <Send size={18} className="submit-btn-icon" aria-hidden="true" />
           <span className="submit-btn-text">{text}</span>
           <Sparkles size={16} className="submit-btn-sparkle text-gold" aria-hidden="true" />
         </>

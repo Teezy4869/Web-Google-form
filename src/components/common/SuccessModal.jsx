@@ -1,7 +1,7 @@
 // src/components/common/SuccessModal.jsx
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Clock, ExternalLink, X, Home, RotateCcw } from 'lucide-react';
+import { CheckCircle2, Clock, ExternalLink, X, Home, RotateCcw, AlertCircle } from 'lucide-react';
 import { CLUB_INFO } from '../../data/clubData';
 import { GALA_EVENT } from '../../data/galaData';
 
@@ -20,8 +20,6 @@ export const SuccessModal = ({ isOpen, data, onClose, onReset }) => {
   }, [isOpen, onClose]);
 
   if (!isOpen || !data) return null;
-
-  const isVerified = data.isVerified !== false;
 
   return (
     <div
@@ -59,25 +57,42 @@ export const SuccessModal = ({ isOpen, data, onClose, onReset }) => {
 
         <div
           className="success-badge-icon"
-          style={!isVerified ? { color: 'var(--champagne)', background: 'rgba(198, 65, 122, 0.16)', borderColor: 'var(--border-gold)' } : {}}
+          style={{ color: 'var(--champagne)', background: 'rgba(198, 65, 122, 0.16)', borderColor: 'var(--border-gold)' }}
         >
-          {isVerified ? <CheckCircle2 size={40} /> : <Clock size={40} />}
+          <Clock size={40} />
         </div>
 
         <h2 id="success-modal-title" className="modal-title font-display">
-          {isVerified ? 'Đăng Ký Thành Công!' : 'Đã Tiếp Nhận Đăng Ký!'}
+          Đơn Đăng Ký Đã Được Tiếp Nhận!
         </h2>
         <p className="modal-desc">
-          {isVerified ? (
-            <>
-              Chúc mừng <strong>{data.fullName || 'bạn'}</strong>! Thông tin đăng ký tham dự <strong>{GALA_EVENT.name}</strong> đã được hệ thống xác nhận chính thức.
-            </>
-          ) : (
-            <>
-              Thông tin đăng ký của <strong>{data.fullName || 'bạn'}</strong> đã được ghi nhận vào hệ thống. Ban Tổ Chức sẽ đối soát và gửi vé mời điện tử qua email.
-            </>
-          )}
+          Thông tin đăng ký vé Standard tham dự <strong>{GALA_EVENT.name}</strong> của <strong>{data.fullName || 'bạn'}</strong> đã được ghi nhận vào hệ thống.
         </p>
+
+        {/* Official Notice Callout */}
+        <div
+          className="modal-notice-box"
+          style={{
+            padding: '1rem 1.15rem',
+            borderRadius: 'var(--radius-sm)',
+            background: 'rgba(198, 65, 122, 0.12)',
+            border: '1px solid var(--border-gold)',
+            marginBottom: '1.25rem',
+            textAlign: 'left'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+            <AlertCircle size={20} className="text-gold" style={{ flexShrink: 0, marginTop: '0.1rem' }} />
+            <div style={{ fontSize: '0.86rem', color: 'var(--text-light)', lineHeight: 1.5 }}>
+              <strong style={{ color: 'var(--champagne)', display: 'block', marginBottom: '0.25rem' }}>
+                Lưu ý quan trọng từ Ban Tổ Chức:
+              </strong>
+              <span>
+                Vì số lượng khán giả được giới hạn nên những đơn đăng ký có Email xác nhận từ Ban Tổ chức GYC - Câu lạc bộ thế hệ trẻ AEP mới được coi là đơn đăng ký hợp lệ.
+              </span>
+            </div>
+          </div>
+        </div>
 
         <div className="summary-card">
           <div className="summary-row">
@@ -86,7 +101,7 @@ export const SuccessModal = ({ isOpen, data, onClose, onReset }) => {
           </div>
           {data.email && (
             <div className="summary-row">
-              <span className="summary-label">Email xác nhận:</span>
+              <span className="summary-label">Email đăng ký:</span>
               <span className="summary-value">{data.email}</span>
             </div>
           )}
@@ -106,8 +121,8 @@ export const SuccessModal = ({ isOpen, data, onClose, onReset }) => {
           )}
           <div className="summary-row">
             <span className="summary-label">Trạng thái:</span>
-            <span className="summary-value" style={{ color: isVerified ? 'var(--success)' : 'var(--champagne)' }}>
-              {isVerified ? 'Đã xác thực' : 'Đang chờ duyệt email'}
+            <span className="summary-value" style={{ color: 'var(--champagne)' }}>
+              Đã ghi nhận · Chờ Email xác nhận từ BTC
             </span>
           </div>
           <div className="summary-row">
@@ -117,7 +132,7 @@ export const SuccessModal = ({ isOpen, data, onClose, onReset }) => {
         </div>
 
         <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
-          📧 Vui lòng kiểm tra hòm thư Email để nhận vé điện tử (E-ticket) và hướng dẫn check-in tại cửa hội trường từ Ban Tổ Chức.
+          📧 Vui lòng theo dõi hộp thư Email (kể cả mục Quảng cáo/Spam) để nhận thông báo xác nhận vé chính thức từ Ban Tổ Chức.
         </p>
 
         <div className="modal-actions">
@@ -136,7 +151,7 @@ export const SuccessModal = ({ isOpen, data, onClose, onReset }) => {
           )}
 
           <a
-            href={CLUB_INFO.contact.fanpageUrl}
+            href={GALA_EVENT.organizerContact.fanpageUrl || CLUB_INFO.contact.fanpageUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary"

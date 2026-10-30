@@ -1,7 +1,7 @@
 // src/components/home/VideoHero.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Ticket, Compass, Calendar, MapPin, ShieldCheck } from 'lucide-react';
+import { Sparkles, Ticket, Compass, Calendar, Clock, MapPin, ShieldCheck } from 'lucide-react';
 import { CLUB_INFO } from '../../data/clubData';
 import { GALA_EVENT } from '../../data/galaData';
 
@@ -13,16 +13,9 @@ import { GALA_EVENT } from '../../data/galaData';
  * - Integrated official Key Visual showcase card with luxury champagne rim
  * - Multi-action CTA buttons (Primary ticket reservation & Secondary smooth scroll exploration)
  * - Zero Layout Shift (CLS = 0) with explicit aspect ratios
- * - Fully responsive across mobile, tablet, and desktop
+ * - Fully responsive across mobile (320px–430px), tablet, and desktop
  */
 export const VideoHero = () => {
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const scrollToGala = () => {
     const galaSection = document.getElementById('gala');
     if (galaSection) {
@@ -63,7 +56,7 @@ export const VideoHero = () => {
             <div className="hero-kicker-wrapper hero-animate-kicker">
               <span className="section-tag hero-kicker">
                 <Sparkles size={14} className="text-gold" />
-                <span>NHẬN DIỆN CHÍNH THỨC · YGC / AEP</span>
+                <span>NHẬN DIỆN CHÍNH THỨC · GYC / AEP</span>
               </span>
             </div>
 
@@ -90,11 +83,15 @@ export const VideoHero = () => {
             <div className="hero-pills-strip hero-animate-pills">
               <div className="hero-info-pill">
                 <Calendar size={15} className="text-gold" />
-                <span>{GALA_EVENT.schedule.dateTime || 'Đang cập nhật'}</span>
+                <span>{GALA_EVENT.schedule.dateTime}</span>
+              </div>
+              <div className="hero-info-pill">
+                <Clock size={15} className="text-gold" />
+                <span>Check-in: {GALA_EVENT.schedule.checkInTime}</span>
               </div>
               <div className="hero-info-pill">
                 <MapPin size={15} className="text-gold" />
-                <span>{GALA_EVENT.venue.address}</span>
+                <span>{GALA_EVENT.venue.fullLocation}</span>
               </div>
               <div className="hero-info-pill">
                 <ShieldCheck size={15} className="text-gold" />
@@ -144,12 +141,7 @@ export const VideoHero = () => {
               <div className="hero-showcase-footer">
                 <div className="showcase-footer-item">
                   <span className="showcase-label">Đơn Vị Tổ Chức</span>
-                  <span className="showcase-value">{CLUB_INFO.name}</span>
-                </div>
-                <div className="showcase-footer-divider" />
-                <div className="showcase-footer-item">
-                  <span className="showcase-label">Chủ Đề</span>
-                  <span className="showcase-value text-gold">{GALA_EVENT.theme}</span>
+                  <span className="showcase-value">GYC - Câu lạc bộ Thế hệ trẻ AEP</span>
                 </div>
               </div>
             </div>
@@ -157,12 +149,12 @@ export const VideoHero = () => {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
+      {/* Scroll Down Indicator - Guides smoothly to Gala Section */}
       <button
         type="button"
         className="video-hero-scroll-indicator hero-scroll-indicator"
-        onClick={scrollToAbout}
-        aria-label="Cuộn xuống khám phá thêm thông tin"
+        onClick={scrollToGala}
+        aria-label="Cuộn xuống khám phá sự kiện D-DAY 2026"
       >
         <span className="scroll-mouse">
           <span className="scroll-wheel" />

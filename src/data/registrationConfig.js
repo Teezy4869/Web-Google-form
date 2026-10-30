@@ -1,94 +1,46 @@
-// src/data/registrationConfig.js
-/**
- * Central Configuration for Gala Night Event Registration Form
- * All field labels, placeholders, helper texts, validation constraints, and choices are centralized here.
- */
-
-export const ATTENDEE_TYPE_OPTIONS = [
-  { value: "Thành viên CLB", label: "Thành viên CLB" },
-  { value: "Cựu thành viên", label: "Cựu thành viên" },
-  { value: "Khách mời", label: "Khách mời" },
-  { value: "Khác", label: "Khác" }
+// Questions and order verified against the published Solfera Google Form.
+export const SCHOOL_OPTIONS = [
+  { value: 'Đại học Kinh tế Quốc dân', label: 'Đại học Kinh tế Quốc dân' },
+  { value: '__other_option__', label: 'Mục khác' }
 ];
 
 export const REGISTRATION_FIELDS = {
   fullName: {
-    id: "fullName",
-    name: "fullName",
-    label: "Họ và tên",
-    required: true,
-    placeholder: "Ví dụ: Nguyễn Văn An",
-    helperText: "Vui lòng nhập họ và tên đầy đủ theo giấy tờ định danh.",
-    autoComplete: "name",
-    type: "text",
-    maxLength: 100
+    name: 'fullName', label: 'Họ và tên', required: true,
+    type: 'text', autoComplete: 'name', placeholder: 'Họ và tên của bạn'
   },
-  email: {
-    id: "email",
-    name: "email",
-    label: "Địa chỉ Email",
-    required: true,
-    placeholder: "example@gmail.com",
-    helperText: "Email chính thức nhận thư mời và thông tin check-in sự kiện.",
-    autoComplete: "email",
-    type: "email",
-    maxLength: 150
+  school: {
+    name: 'school', label: 'Trường bạn đang theo học', required: true,
+    options: SCHOOL_OPTIONS
   },
-  phone: {
-    id: "phone",
-    name: "phone",
-    label: "Số điện thoại liên hệ",
-    required: true,
-    placeholder: "0987654321",
-    helperText: "Số điện thoại có Zalo để Ban Tổ Chức tiện liên lạc.",
-    autoComplete: "tel",
-    type: "tel",
-    maxLength: 15
+  schoolOther: {
+    name: 'schoolOther', label: 'Tên trường khác', required: true,
+    type: 'text', placeholder: 'Nhập tên trường của bạn'
   },
   studentId: {
-    id: "studentId",
-    name: "studentId",
-    label: "Mã sinh viên",
-    required: false,
-    placeholder: "Ví dụ: B23DCCN001",
-    helperText: "Dành cho sinh viên (tùy chọn).",
-    autoComplete: "off",
-    type: "text",
-    maxLength: 20
+    name: 'studentId', label: 'Mã sinh viên', required: true,
+    type: 'text', placeholder: 'Nếu không có, ghi N/A',
+    helperText: 'Nếu không có, vui lòng ghi N/A.'
   },
   className: {
-    id: "className",
-    name: "className",
-    label: "Lớp / Đơn vị",
-    required: false,
-    placeholder: "Ví dụ: D23CQCN01-B hoặc Tên tổ chức/CLB",
-    helperText: "Lớp niên khóa hoặc đơn vị của bạn (tùy chọn).",
-    autoComplete: "organization",
-    type: "text",
-    maxLength: 100
+    name: 'className', label: 'Lớp chuyên ngành', required: true,
+    type: 'text', placeholder: 'Nếu không có, ghi N/A',
+    helperText: 'Nếu không có, vui lòng ghi N/A.'
   },
-  attendeeType: {
-    name: "attendeeType",
-    label: "Nhóm người tham dự",
-    required: true,
-    helperText: "Vui lòng chọn nhóm đối tượng tham dự phù hợp nhất.",
-    options: ATTENDEE_TYPE_OPTIONS
+  phone: {
+    name: 'phone', label: 'Số điện thoại', required: true,
+    type: 'tel', autoComplete: 'tel', placeholder: 'Số điện thoại liên hệ'
+  },
+  email: {
+    name: 'email', label: 'Email', required: true,
+    type: 'email', autoComplete: 'email', placeholder: 'ten@example.com'
+  },
+  facebook: {
+    name: 'facebook', label: 'Link Facebook', required: true,
+    type: 'text', placeholder: 'Đường dẫn trang Facebook của bạn'
   },
   note: {
-    id: "note",
-    name: "note",
-    label: "Ghi chú cho Ban tổ chức",
-    required: false,
-    placeholder: "Lời nhắn gửi, yêu cầu chỗ ngồi hoặc câu hỏi dành cho Ban Tổ Chức...",
-    helperText: "Tối đa 1000 ký tự (tùy chọn).",
-    maxLength: 1000,
-    rows: 4
-  },
-  consent: {
-    id: "consent",
-    name: "consent",
-    label: "Tôi đồng ý cho phép Ban Tổ Chức sử dụng thông tin trên cho mục đích tổ chức sự kiện GALA NIGHT 2026.",
-    required: true
+    name: 'note', label: 'Nếu có bất kỳ thắc mắc nào, hãy gửi đến Ban Tổ chức tại đây.',
+    required: false, placeholder: 'Câu hỏi dành cho Ban Tổ chức (không bắt buộc)'
   }
 };
-

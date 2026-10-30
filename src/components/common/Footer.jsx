@@ -1,7 +1,7 @@
 // src/components/common/Footer.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, MessageCircle, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, ArrowUp } from 'lucide-react';
 import { CLUB_INFO } from '../../data/clubData';
 import { GALA_EVENT } from '../../data/galaData';
 
@@ -32,7 +32,7 @@ export const Footer = () => {
             </div>
 
             <p className="footer-brand-desc">
-              {GALA_EVENT.tagline}. Sự kiện thường niên chính thức của {CLUB_INFO.fullName}.
+              {CLUB_INFO.footerDescription || "Chuỗi Sự kiện Chào sinh viên AEP dành riêng cho tân sinh viên Viện Đào tạo Tiên tiến, Chất lượng cao & POHE"}
             </p>
 
             <div className="footer-social-links">
@@ -41,21 +41,10 @@ export const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-secondary footer-social-btn"
-                aria-label="Theo dõi Fanpage chính thức YGC / AEP"
+                aria-label="Theo dõi Fanpage chính thức GYC - Câu lạc bộ Thế hệ trẻ AEP"
               >
                 <Facebook size={16} />
-                <span>Fanpage YGC / AEP</span>
-              </a>
-
-              <a
-                href={CLUB_INFO.contact.groupUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-secondary footer-social-btn"
-                aria-label="Tham gia cộng đồng Zalo chính thức"
-              >
-                <MessageCircle size={16} />
-                <span>Cộng Đồng Zalo</span>
+                <span>Fanpage: {CLUB_INFO.contact.fanpageName || "GYC - Câu lạc bộ Thế hệ trẻ AEP"}</span>
               </a>
             </div>
           </div>
@@ -68,20 +57,24 @@ export const Footer = () => {
             <ul className="footer-contact-list">
               <li>
                 <Mail size={16} className="text-gold" />
-                <span>{GALA_EVENT.organizerContact.email}</span>
+                <a href={`mailto:${GALA_EVENT.organizerContact.email}`} className="footer-contact-link">
+                  {GALA_EVENT.organizerContact.email}
+                </a>
               </li>
               <li>
                 <Phone size={16} className="text-gold" />
-                <span>Hotline: {GALA_EVENT.organizerContact.hotline}</span>
+                <a href={`tel:${GALA_EVENT.organizerContact.hotlineTel || GALA_EVENT.organizerContact.hotline.replace(/\s/g, '')}`} className="footer-contact-link">
+                  Hotline: {GALA_EVENT.organizerContact.hotline}
+                </a>
               </li>
               <li>
                 <MapPin size={16} className="text-gold" />
-                <span>{GALA_EVENT.venue.address}</span>
+                <span>{GALA_EVENT.venue.fullLocation || GALA_EVENT.venue.address}</span>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Quick Navigation */}
+          {/* Column 3: Quick Navigation (Order aligned with page reading hierarchy) */}
           <div className="footer-nav">
             <h4 className="footer-col-title">
               Liên Kết Nhanh
@@ -91,10 +84,10 @@ export const Footer = () => {
                 <Link to="/" className="footer-link">Trang Chủ</Link>
               </li>
               <li>
-                <Link to="/#about" className="footer-link">Về YGC / CLB</Link>
+                <Link to="/#gala" className="footer-link">Sự Kiện D-DAY 2026</Link>
               </li>
               <li>
-                <Link to="/#gala" className="footer-link">Sự Kiện D-DAY 2026</Link>
+                <Link to="/#about" className="footer-link">Về GYC / CLB</Link>
               </li>
               <li>
                 <Link to="/register" className="footer-link text-gold" style={{ fontWeight: 600 }}>
